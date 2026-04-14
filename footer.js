@@ -22,33 +22,33 @@ function createFooter() {
           <div class="footer-col">
             <h3>List Types</h3>
             <ul>
-              <li><a href="#app">Grocery List Maker</a></li>
-              <li><a href="#app">Shopping List</a></li>
-              <li><a href="#app">To-Do List Maker</a></li>
-              <li><a href="#app">Task List</a></li>
-              <li><a href="#app">Checklist Maker</a></li>
-              <li><a href="#app">Mailing List</a></li>
+              <li><a href="/#app">Grocery List Maker</a></li>
+              <li><a href="/#app">Shopping List</a></li>
+              <li><a href="/#app">To-Do List Maker</a></li>
+              <li><a href="/#app">Task List</a></li>
+              <li><a href="/#app">Checklist Maker</a></li>
+              <li><a href="/#app">Mailing List</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h3>Features</h3>
             <ul>
-              <li><a href="#features">Smart Suggestions</a></li>
-              <li><a href="#features">Categories & Tags</a></li>
-              <li><a href="#features">Export & Share</a></li>
-              <li><a href="#features">Priority Levels</a></li>
-              <li><a href="#features">Due Dates</a></li>
-              <li><a href="#features">Templates</a></li>
+              <li><a href="/#features">Smart Suggestions</a></li>
+              <li><a href="/#features">Categories & Tags</a></li>
+              <li><a href="/#features">Export & Share</a></li>
+              <li><a href="/#features">Priority Levels</a></li>
+              <li><a href="/#features">Due Dates</a></li>
+              <li><a href="/#features">Templates</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h3>Resources</h3>
-            <ul>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Sitemap</a></li>
+            <ul>              
+              <li><a href="privacy">Privacy Policy</a></li>
+              <li><a href="terms">Terms of Service</a></li>
+              <li><a href="about">About</a></li>
+              <li><a href="contact">Contact</a></li>
+              <li><a href="sitemap.xml">Sitemap</a></li>
             </ul>
           </div>
         </div>
