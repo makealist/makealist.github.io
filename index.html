@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary SEO -->
+  <title>MakeAList – Free Online List Maker | Grocery, Shopping, To-Do & Checklist Maker</title>
+  <meta name="description" content="MakeAList is the ultimate free online list maker. Create grocery lists, shopping lists, to-do lists, task lists, checklists, and mailing lists instantly — no sign-up required.">
+  <meta name="keywords" content="list maker, grocery list maker, shopping list, make a grocery list, to do list maker, make a checklist, task list, create mailing list, create a checklist, checklist maker">
+  <meta name="author" content="MakeAList">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://makealist.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MakeAList – Free Online List Maker">
+  <meta property="og:description" content="Create grocery lists, shopping lists, to-do lists, checklists and more in seconds. Free, fast, no sign-up needed.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://makealist.github.io/">
+  <meta property="og:image" content="https://makealist.github.io/og-image.png">
+  <meta property="og:site_name" content="MakeAList">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MakeAList – Free Online List Maker">
+  <meta name="twitter:description" content="Grocery lists, shopping lists, to-do lists, checklists and more — all free, no account needed.">
+  <meta name="twitter:image" content="https://makealist.github.io/og-image.png">
+
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MakeAList",
+    "url": "https://makealist.github.io/",
+    "description": "Free online list maker for grocery lists, shopping lists, to-do lists, task lists, checklists, and mailing lists.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Grocery List Maker",
+      "Shopping List",
+      "To-Do List Maker",
+      "Checklist Maker",
+      "Task List",
+      "Mailing List Creator",
+      "Priority Levels",
+      "Due Dates",
+      "Export Lists",
+      "Share Lists",
+      "No Account Required"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I make a grocery list?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click 'Grocery List' in the app, then type each item and press Add or Enter. Items are saved automatically in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MakeAList free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! MakeAList is 100% free with no account, no subscription, and no ads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I share my list with others?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Click the 'Share' button on any list to copy a shareable link that others can open to import the list."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does MakeAList work on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. MakeAList is fully responsive and works great on phones, tablets, and desktops."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://makealist.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "App", "item": "https://makealist.github.io/#app" },
+      { "@type": "ListItem", "position": 3, "name": "Features", "item": "https://makealist.github.io/#features" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header (JS Component) -->
+<div id="header-root"></div>
+
+<main id="main-content">
+
+  <!-- ① HERO ───────────────────────────────────────────────────────────── -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Free · No Sign-Up · Works Instantly
+        </div>
+        <h1 class="hero-h1">The Smartest Way to<br><em>Make a List</em></h1>
+        <p class="hero-sub">Create grocery lists, shopping lists, to-do lists, checklists, task lists, and mailing lists — all in one place, completely free.</p>
+        <div class="hero-cta">
+          <a href="#app" class="btn-primary">✓ Start Your List</a>
+          <a href="#features" class="btn-outline">See Features →</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">7+</div>
+            <div class="hero-stat-label">List Types</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Free Forever</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">0</div>
+            <div class="hero-stat-label">Sign-ups Needed</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-card-title">
+            <span class="hero-card-icon">🛒</span>
+            <span class="hero-card-name">Weekly Grocery List</span>
+          </div>
+          <div class="hero-items">
+            <div class="hero-item checked"><div class="hero-check">✓</div><span class="hero-item-text">Milk &amp; Eggs</span></div>
+            <div class="hero-item checked"><div class="hero-check">✓</div><span class="hero-item-text">Fresh Bread</span></div>
+            <div class="hero-item"><div class="hero-check"></div><span class="hero-item-text">Chicken Breast</span></div>
+            <div class="hero-item"><div class="hero-check"></div><span class="hero-item-text">Spinach &amp; Tomatoes</span></div>
+            <div class="hero-item"><div class="hero-check"></div><span class="hero-item-text">Olive Oil</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② APP ────────────────────────────────────────────────────────────── -->
+  <section id="app" aria-label="List Maker App">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">The App</span>
+        <h2 class="section-title">Your List Maker, Right Here</h2>
+        <p class="section-sub">No downloads. No accounts. Just open the page and start making your list.</p>
+      </div>
+      <div class="app-embed reveal" style="margin-top:40px;">
+        <div id="app-root"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ FEATURES ───────────────────────────────────────────────────────── -->
+  <section id="features" aria-label="Features">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Everything You Need in a List Maker</h2>
+        <p class="section-sub">Powerful features that keep you organized without getting in your way.</p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="feature-icon">🛒</div>
+          <h3>Grocery List Maker</h3>
+          <p>Quickly build your weekly grocery list with smart auto-suggestions. Categorize by aisle, mark items as done, and export your list before heading to the store.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">✅</div>
+          <h3>To-Do List Maker</h3>
+          <p>Turn your scattered thoughts into organized action. Set priorities, add due dates, and watch your productivity soar with a clean and intuitive to-do list interface.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">☑️</div>
+          <h3>Checklist Maker</h3>
+          <p>Never miss a step again. Create detailed checklists for packing, travel, events, or any process that needs to be done right every single time.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">📋</div>
+          <h3>Task List Manager</h3>
+          <p>Manage personal and work tasks in one place. Assign high, medium, or low priorities and filter by status to focus on what matters most right now.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">📧</div>
+          <h3>Mailing List Creator</h3>
+          <p>Organize contacts, email addresses, and mailing information in a structured list. Perfect for event invites, newsletters, and personal address books.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">🔗</div>
+          <h3>Share & Export</h3>
+          <p>Share any list with a single link or download it as a text file. Perfect for collaborating on grocery runs, event planning, or team task management.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">🌙</div>
+          <h3>Dark Mode</h3>
+          <p>Protect your eyes at night with a beautifully designed dark theme. Toggle between light and dark modes anytime with a single click.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">💾</div>
+          <h3>Auto-Save</h3>
+          <p>Your lists are automatically saved in your browser. Come back anytime and your data will be exactly where you left it — no account needed.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>Smart Suggestions</h3>
+          <p>Get contextual item suggestions based on your list type. Start typing or tap a quick-add chip to instantly populate your list with common items.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ LIST TYPES ─────────────────────────────────────────────────────── -->
+  <section id="list-types" aria-label="List Types">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">List Types</span>
+        <h2 class="section-title">Make Any Kind of List</h2>
+        <p class="section-sub">From your weekly grocery run to complex project tasks — there's a list type for everything.</p>
+      </div>
+      <div class="types-grid">
+        <article class="type-card reveal">
+          <span class="type-card-icon">🛒</span>
+          <div>
+            <h3>Make a Grocery List</h3>
+            <p>Build your supermarket shopping list in seconds. Use smart suggestions for common grocery items, check them off as you shop, and never forget an item again.</p>
+            <a href="#app">Create Grocery List →</a>
+          </div>
+        </article>
+        <article class="type-card reveal">
+          <span class="type-card-icon">🛍️</span>
+          <div>
+            <h3>Make a Shopping List</h3>
+            <p>From clothes and electronics to gifts and supplies — keep all your shopping lists organized in one place. Share with family for easy collaborative shopping.</p>
+            <a href="#app">Create Shopping List →</a>
+          </div>
+        </article>
+        <article class="type-card reveal">
+          <span class="type-card-icon">✅</span>
+          <div>
+            <h3>To-Do List Maker</h3>
+            <p>Turn your daily goals into checkable tasks. Set due dates, assign priorities, and filter between active and completed items to stay on top of your day.</p>
+            <a href="#app">Create To-Do List →</a>
+          </div>
+        </article>
+        <article class="type-card reveal">
+          <span class="type-card-icon">📋</span>
+          <div>
+            <h3>Task List</h3>
+            <p>Perfect for project management and work planning. Create structured task lists with priorities and deadlines to keep every project on track.</p>
+            <a href="#app">Create Task List →</a>
+          </div>
+        </article>
+        <article class="type-card reveal">
+          <span class="type-card-icon">☑️</span>
+          <div>
+            <h3>Create a Checklist</h3>
+            <p>Great for travel packing lists, event preparation, or any step-by-step process. A checklist ensures consistency and eliminates the risk of forgetting anything important.</p>
+            <a href="#app">Create Checklist →</a>
+          </div>
+        </article>
+        <article class="type-card reveal">
+          <span class="type-card-icon">📧</span>
+          <div>
+            <h3>Create Mailing List</h3>
+            <p>Collect and organize names, email addresses, and contact details in a clean mailing list format. Export it any time for newsletters, events, or outreach campaigns.</p>
+            <a href="#app">Create Mailing List →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ HOW IT WORKS ───────────────────────────────────────────────────── -->
+  <section id="how-it-works" aria-label="How it works">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title">Make a List in 3 Simple Steps</h2>
+        <p class="section-sub">No learning curve. No confusion. Just open, create, and organize.</p>
+      </div>
+      <div class="steps-container">
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <h3>Choose a List Type</h3>
+          <p>Pick from grocery, shopping, to-do, task, checklist, mailing list, or create a custom list. Each type comes with smart built-in suggestions.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">2</div>
+          <h3>Add Your Items</h3>
+          <p>Type items manually, tap quick-add suggestions, or paste a batch. Set priorities and due dates for task-based lists to stay organized.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">3</div>
+          <h3>Check Off &amp; Share</h3>
+          <p>Check items as you complete them, track your progress with the visual bar, and share or export your list whenever you need it.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">4</div>
+          <h3>Come Back Anytime</h3>
+          <p>All your lists are auto-saved locally. Return tomorrow, next week, or next month — everything stays right where you left it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ KEYWORD CONTENT TABS ───────────────────────────────────────────── -->
+  <section id="keyword-content" aria-label="List Maker Guides">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Guides</span>
+        <h2 class="section-title">How to Use Each List Type</h2>
+        <p class="section-sub">Detailed tips for getting the most out of every kind of list.</p>
+      </div>
+      <div class="kw-tabs reveal" role="tablist" aria-label="List type guides">
+        <button class="kw-tab active" role="tab" data-tab="grocery" aria-selected="true">Grocery List</button>
+        <button class="kw-tab" role="tab" data-tab="shopping" aria-selected="false">Shopping List</button>
+        <button class="kw-tab" role="tab" data-tab="todo" aria-selected="false">To-Do List</button>
+        <button class="kw-tab" role="tab" data-tab="task" aria-selected="false">Task List</button>
+        <button class="kw-tab" role="tab" data-tab="checklist" aria-selected="false">Checklist</button>
+        <button class="kw-tab" role="tab" data-tab="mailing" aria-selected="false">Mailing List</button>
+      </div>
+      <div class="kw-panels reveal">
+        <!-- Grocery -->
+        <div class="kw-panel active" id="panel-grocery" role="tabpanel">
+          <h3>How to Make a Grocery List</h3>
+          <p>A well-organized grocery list saves time, reduces food waste, and helps you stick to your budget. MakeAList's grocery list maker lets you build your weekly shopping list in under a minute with smart auto-suggestions for hundreds of common grocery items.</p>
+          <p>To make a grocery list, select the Grocery List type, type each item you need, and tap the Add button. Use the quick-add suggestion chips at the bottom to instantly add common staples like Milk, Eggs, and Bread. Check items off as you walk through each aisle, and your progress bar updates in real time.</p>
+          <ul>
+            <li>Smart grocery item suggestions</li>
+            <li>Check off items while shopping</li>
+            <li>Track how many items are left</li>
+            <li>Export your grocery list as a text file</li>
+            <li>Share the list with a family member</li>
+            <li>Never forget essentials again</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Make a Grocery List →</button>
+        </div>
+        <!-- Shopping -->
+        <div class="kw-panel" id="panel-shopping" role="tabpanel">
+          <h3>How to Make a Shopping List</h3>
+          <p>A shopping list is more than groceries — it could be clothes, electronics, gifts, home supplies, or school items. MakeAList's shopping list maker helps you organize everything you need to buy in one neat, shareable list.</p>
+          <p>Create multiple shopping lists for different stores or occasions. Add items, set priorities so the most important purchases stand out, and check things off as you buy them. Share your list with a partner or friend so you can split the shopping trip efficiently.</p>
+          <ul>
+            <li>Organize shopping by category</li>
+            <li>High/Low priority flags</li>
+            <li>Share your list via link</li>
+            <li>Multiple simultaneous lists</li>
+            <li>Export to text file</li>
+            <li>Works offline after first load</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Make a Shopping List →</button>
+        </div>
+        <!-- To-Do -->
+        <div class="kw-panel" id="panel-todo" role="tabpanel">
+          <h3>To-Do List Maker: Get Things Done</h3>
+          <p>A to-do list is the cornerstone of personal productivity. Whether you're managing a busy schedule, planning your week, or working through a personal project, a well-structured to-do list keeps you focused and moving forward.</p>
+          <p>MakeAList's to-do list maker lets you add tasks instantly, set due dates, assign priority levels, and filter by active vs. completed items. Watch your progress bar fill up as you check off tasks — it's satisfying and motivating.</p>
+          <ul>
+            <li>Add tasks with one click</li>
+            <li>Due date reminders</li>
+            <li>High, Normal, Low priority</li>
+            <li>Filter active &amp; done tasks</li>
+            <li>Progress bar visualization</li>
+            <li>Clear completed items in bulk</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Make a To-Do List →</button>
+        </div>
+        <!-- Task -->
+        <div class="kw-panel" id="panel-task" role="tabpanel">
+          <h3>Task List: Manage Projects &amp; Work</h3>
+          <p>A task list goes beyond a simple to-do list. It's designed for managing multi-step projects, work deliverables, and team coordination. With MakeAList's task list maker, you can track progress across multiple projects and ensure nothing falls through the cracks.</p>
+          <p>Add tasks with deadlines, set them as high priority to highlight blockers, and filter your view to focus on what's active. Inline editing lets you update task names instantly without losing your flow.</p>
+          <ul>
+            <li>Inline task name editing</li>
+            <li>Due date assignments</li>
+            <li>Priority-based sorting</li>
+            <li>Multiple task lists</li>
+            <li>Export to .txt for reports</li>
+            <li>Share with team members</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Create a Task List →</button>
+        </div>
+        <!-- Checklist -->
+        <div class="kw-panel" id="panel-checklist" role="tabpanel">
+          <h3>Checklist Maker: Never Miss a Step</h3>
+          <p>Checklists are the secret behind consistent, error-free processes. Pilots use them. Surgeons use them. And you should too. Whether it's a travel packing checklist, an event setup list, or a house cleaning routine, having a checklist means you never miss a critical step.</p>
+          <p>Create a checklist with MakeAList in seconds. Add every item you need to complete, check each one off as you go, and reuse the list next time by unchecking everything at once.</p>
+          <ul>
+            <li>Packing checklists for travel</li>
+            <li>Event preparation checklists</li>
+            <li>Daily routine checklists</li>
+            <li>Reusable — uncheck &amp; repeat</li>
+            <li>Share checklists with others</li>
+            <li>Export for printing</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Create a Checklist →</button>
+        </div>
+        <!-- Mailing -->
+        <div class="kw-panel" id="panel-mailing" role="tabpanel">
+          <h3>Create a Mailing List in Seconds</h3>
+          <p>Whether you're organizing a wedding guest list, building an email campaign list, or keeping track of holiday card recipients, a well-organized mailing list is essential. MakeAList makes it easy to collect and organize contact information in a clean, structured format.</p>
+          <p>Add entries for names, email addresses, phone numbers, and physical addresses. Export the complete mailing list as a text file for use in spreadsheets, email tools, or print labels.</p>
+          <ul>
+            <li>Add names &amp; email addresses</li>
+            <li>Include phone &amp; postal details</li>
+            <li>Export to text / CSV-ready</li>
+            <li>Share via link</li>
+            <li>Works for events &amp; newsletters</li>
+            <li>No account or login needed</li>
+          </ul>
+          <button class="kw-cta" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Create a Mailing List →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ TIPS ───────────────────────────────────────────────────────────── -->
+  <section id="tips" aria-label="List Making Tips">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">Pro Tips</span>
+        <h2 class="section-title">Get More from Your Lists</h2>
+        <p class="section-sub">Simple habits that make your lists smarter and your life easier.</p>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card reveal" data-num="01">
+          <h3>Plan Your Grocery List by Aisle</h3>
+          <p>Group related grocery items together when building your list — produce, dairy, meats, frozen. It cuts your shopping time significantly and reduces backtracking around the store.</p>
+        </div>
+        <div class="tip-card reveal" data-num="02">
+          <h3>Use Priority Levels for To-Do Lists</h3>
+          <p>Mark your most important tasks as "High Priority" so they stand out visually. Focus on those first each morning before moving to normal and low-priority tasks.</p>
+        </div>
+        <div class="tip-card reveal" data-num="03">
+          <h3>Share Shopping Lists with Family</h3>
+          <p>Use the share button to send your shopping list to a family member. They can open it in their browser and you can divide the shopping without endless back-and-forth messages.</p>
+        </div>
+        <div class="tip-card reveal" data-num="04">
+          <h3>Set Due Dates on All Tasks</h3>
+          <p>Tasks without deadlines tend to stay undone. Even if the deadline is flexible, adding a due date creates accountability and keeps important work visible in your list view.</p>
+        </div>
+        <div class="tip-card reveal" data-num="05">
+          <h3>Keep a Master Checklist Template</h3>
+          <p>Create a reusable packing checklist for trips or a routine checklist for recurring events. After completing it, use "Clear Done" to reset and reuse the same list next time.</p>
+        </div>
+        <div class="tip-card reveal" data-num="06">
+          <h3>Export Lists Before Big Events</h3>
+          <p>Before a shopping trip or important event, use the Export button to download your list as a .txt file. Great as a printed backup when you won't have phone access.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑧ FAQ ────────────────────────────────────────────────────────────── -->
+  <section id="faq" aria-label="Frequently Asked Questions">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Everything you need to know about MakeAList.</p>
+      </div>
+      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">How do I make a grocery list on MakeAList?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Click the "Grocery List" card in the app or select it from the new list menu. Then type each grocery item you need in the input box and click Add or press Enter. You can also tap the quick-add suggestions at the bottom for common items. Everything saves automatically.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">Is MakeAList completely free?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Yes! MakeAList is 100% free to use. There are no subscriptions, no premium tiers, and no hidden fees. Every feature — including sharing, exporting, and all list types — is available to everyone for free.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">Do I need to create an account?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">No account is needed. MakeAList saves all your lists directly in your browser's local storage. Just open the page and start creating lists immediately. Your data stays on your device.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">How do I share a list with someone else?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Open the list you want to share, click the "Share" button in the list header, and a shareable link will be copied to your clipboard. Send that link to anyone — they can open it in their browser and the list will import automatically.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">Can I use MakeAList on my phone?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Absolutely. MakeAList is fully mobile-responsive and works smoothly on all smartphones and tablets. Whether you're on iOS Safari, Android Chrome, or any modern mobile browser, you'll have the full list-making experience.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">How do I export my list?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Open any list and click the "Export" button in the list header. Your list will be downloaded as a plain text (.txt) file that you can open in any text editor, print, or paste into other apps. All items, due dates, and their completion status are included.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">Will my lists be saved if I close the browser?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">Yes. All lists are automatically saved to your browser's local storage every time you make a change. You can close the tab, restart your browser, or even shut down your computer — your lists will still be there when you come back.</span>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" aria-expanded="false">
+            <span itemprop="name">What types of lists can I make?</span>
+            <span class="faq-arrow">▼</span>
+          </button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <span itemprop="text">MakeAList supports 7 list types: Grocery List, Shopping List, To-Do List, Task List, Checklist, Mailing List, and Custom List. Each comes with relevant smart suggestions to help you add items faster.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑨ CTA BANNER ─────────────────────────────────────────────────────── -->
+  <section id="cta-banner" aria-label="Call to action">
+    <div class="container">
+      <h2>Ready to Get Organized?</h2>
+      <p>Start making your grocery list, shopping list, checklist, or to-do list right now — free, fast, and no account required.</p>
+      <a href="#app" class="btn-white">✓ Make a List Now</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer (JS Component) -->
+<div id="footer-root"></div>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+<script src="app.js"></script>
+<script>
+// ── Keyword Tabs ───────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.kw-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.kw-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      const panel = document.getElementById('panel-' + tab.dataset.tab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // ── FAQ accordion ────────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  // ── Scroll reveal ────────────────────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger feature cards
+  document.querySelectorAll('.feature-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 60) + 'ms';
+  });
+  document.querySelectorAll('.type-card').forEach((card, i) => {
+    card.style.transitionDelay = (i * 50) + 'ms';
+  });
+});
+</script>
+</body>
+</html>
