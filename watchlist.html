@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-06561B0QQ5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-06561B0QQ5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch List – Track Movies, TV Shows & Anime | MakeAList</title>
+<meta name="description" content="Free online watch list tracker. Organize movies, TV shows, anime and videos into Want to Watch, Watching, and Finished lists. No sign-up required.">
+<meta name="keywords" content="watch list, movie tracker, tv show tracker, anime watch list, what to watch, watchlist maker, movie list">
+<link rel="canonical" href="https://makealist.github.io/watchlist">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<meta property="og:title" content="Watch List Tracker – Movies, TV Shows & Anime">
+<meta property="og:description" content="Track everything you want to watch, are watching, or have finished. Free, no account needed.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Watch List Tracker",
+  "url":"https://makealist.github.io/watchlist",
+  "description":"Track movies, TV shows, anime and videos across want to watch, watching, and finished lists.",
+  "applicationCategory":"EntertainmentApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'Outfit',sans-serif;
+  --bg:#0a0b0f;
+  --bg2:#111318;
+  --bg3:#1a1c24;
+  --surface:#1e2028;
+  --border:#2a2d38;
+  --text:#f0f0f5;
+  --text2:#9b9daa;
+  --text3:#5a5c6a;
+  --want:#e8b84b;
+  --watching:#4b9ce8;
+  --done:#4be89c;
+  --danger:#e84b4b;
+  --radius:12px;
+  --shadow:0 4px 24px rgba(0,0,0,.4);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,11,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.5rem;letter-spacing:.05em}
+.nav-brand-icon{width:32px;height:32px;background:var(--want);border-radius:8px;display:grid;place-items:center;color:#000;font-size:.9rem}
+.nav-back{font-size:.85rem;color:var(--text2);padding:6px 14px;border-radius:99px;border:1px solid var(--border);transition:.2s;cursor:pointer}
+.nav-back:hover{color:var(--want);border-color:var(--want)}
+
+/* HERO */
+.hero{padding:80px 24px 60px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(232,184,75,.12),transparent);position:relative;overflow:hidden}
+.hero::before{content:'▶';position:absolute;font-size:20rem;opacity:.015;top:-40px;left:50%;transform:translateX(-50%);pointer-events:none;line-height:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:99px;border:1px solid var(--border);font-size:.8rem;color:var(--text2);margin-bottom:20px;letter-spacing:.05em;text-transform:uppercase}
+.hero h1{font-family:var(--font-display);font-size:clamp(3.5rem,9vw,7rem);letter-spacing:.04em;line-height:1;margin-bottom:16px}
+.hero h1 span{color:var(--want)}
+.hero p{font-size:1.1rem;color:var(--text2);max-width:520px;margin:0 auto 36px}
+.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:var(--font-display);font-size:2.2rem;color:var(--want)}
+.stat-l{font-size:.8rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
+
+/* APP */
+.app-section{padding:40px 24px;max-width:1100px;margin:0 auto}
+.app-tabs{display:flex;gap:4px;margin-bottom:28px;background:var(--bg2);padding:4px;border-radius:14px;border:1px solid var(--border)}
+.app-tab{flex:1;padding:10px;border-radius:10px;border:none;background:none;cursor:pointer;font-family:var(--font-body);font-size:.9rem;font-weight:500;color:var(--text2);transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.app-tab.want.active{background:rgba(232,184,75,.15);color:var(--want)}
+.app-tab.watching.active{background:rgba(75,156,232,.15);color:var(--watching)}
+.app-tab.done.active{background:rgba(75,232,156,.15);color:var(--done)}
+.app-tab:not(.active):hover{background:var(--bg3);color:var(--text)}
+.tab-count{font-size:.75rem;padding:1px 7px;border-radius:99px;background:var(--border)}
+.add-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.add-input{flex:1;min-width:180px;padding:11px 16px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font-body);font-size:.9rem;transition:.2s}
+.add-input:focus{outline:none;border-color:var(--want)}
+.type-select,.year-input,.rating-select{padding:11px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font-body);font-size:.85rem;cursor:pointer}
+.type-select:focus,.year-input:focus,.rating-select:focus{outline:none;border-color:var(--want)}
+.year-input{width:90px}
+.btn-add{padding:11px 22px;border-radius:10px;background:var(--want);color:#000;border:none;font-family:var(--font-body);font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-add:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.search-row{display:flex;gap:8px;margin-bottom:16px}
+.search-input{flex:1;padding:9px 14px;border-radius:9px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-family:var(--font-body);font-size:.85rem}
+.search-input:focus{outline:none;border-color:var(--text3)}
+.sort-select{padding:9px 12px;border-radius:9px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-family:var(--font-body);font-size:.82rem;cursor:pointer}
+
+/* GRID */
+.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;min-height:200px}
+.item-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:.25s;position:relative;overflow:hidden}
+.item-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.item-card.want::before{background:var(--want)}
+.item-card.watching::before{background:var(--watching)}
+.item-card.done::before{background:var(--done)}
+.item-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.item-type-badge{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:99px;margin-bottom:10px;display:inline-block}
+.badge-movie{background:rgba(232,184,75,.15);color:var(--want)}
+.badge-tv{background:rgba(75,156,232,.15);color:var(--watching)}
+.badge-anime{background:rgba(232,75,75,.15);color:var(--danger)}
+.badge-video{background:rgba(75,232,156,.15);color:var(--done)}
+.item-title{font-size:1rem;font-weight:600;margin-bottom:6px;line-height:1.3;word-break:break-word}
+.item-meta{font-size:.78rem;color:var(--text3);margin-bottom:10px}
+.item-stars{color:var(--want);font-size:.85rem;margin-bottom:10px}
+.item-notes{font-size:.8rem;color:var(--text2);font-style:italic;margin-bottom:12px;word-break:break-word}
+.item-actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn-move{font-size:.72rem;padding:4px 10px;border-radius:99px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;transition:.15s;font-family:var(--font-body)}
+.btn-move:hover{border-color:var(--want);color:var(--want)}
+.btn-del{font-size:.72rem;padding:4px 10px;border-radius:99px;border:1px solid transparent;background:none;color:var(--text3);cursor:pointer;transition:.15s;font-family:var(--font-body)}
+.btn-del:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-icon{font-size:3.5rem;margin-bottom:12px}
+.empty-state p{font-size:.95rem}
+
+/* NOTES TOGGLE */
+.btn-notes{font-size:.72rem;padding:4px 10px;border-radius:99px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;transition:.15s;font-family:var(--font-body)}
+.notes-input{width:100%;padding:6px 10px;border-radius:7px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-family:var(--font-body);font-size:.8rem;margin-bottom:8px;resize:none}
+.notes-input:focus{outline:none;border-color:var(--text3)}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.stat-card-n{font-family:var(--font-display);font-size:2rem}
+.stat-card-n.want{color:var(--want)}
+.stat-card-n.watching{color:var(--watching)}
+.stat-card-n.done{color:var(--done)}
+.stat-card-l{font-size:.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em}
+
+/* CONTENT SECTIONS */
+.content-section{padding:70px 24px;max-width:860px;margin:0 auto}
+.section-label{display:inline-block;padding:4px 14px;border-radius:99px;background:rgba(232,184,75,.12);color:var(--want);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:.04em;margin-bottom:14px;line-height:1.1}
+.section-body{color:var(--text2);line-height:1.85;font-size:.95rem}
+.section-body p{margin-bottom:14px}
+.how-steps{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+.how-step{display:flex;gap:18px;align-items:flex-start;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.how-step-num{width:42px;height:42px;border-radius:50%;background:var(--want);color:#000;font-family:var(--font-display);font-size:1.4rem;display:grid;place-items:center;flex-shrink:0}
+.how-step h3{font-size:1rem;margin-bottom:4px}
+.how-step p{font-size:.88rem;color:var(--text2)}
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:32px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.faq-q{width:100%;text-align:left;padding:16px 20px;background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:.92rem;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q:hover{color:var(--want)}
+.faq-arrow{font-size:.75rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;font-size:.88rem;color:var(--text2);line-height:1.8}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 16px}
+.divider{height:1px;background:var(--border);margin:0 24px}
+footer{text-align:center;padding:32px 24px;color:var(--text3);font-size:.83rem;border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--want)}
+
+/* MOBILE */
+@media(max-width:600px){
+  .add-row{flex-direction:column}
+  .type-select,.year-input,.rating-select{width:100%}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .stat-card-n{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Header (JS Component) -->
+<div id="header-root"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🎬 Free · No Sign-Up · Auto-Saves</div>
+  <h1>YOUR <span>WATCH</span> LIST</h1>
+  <p>Track every movie, TV show, anime, and video you want to watch, are watching, or have already finished.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Titles</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Status Lists</div></div>
+    <div class="stat"><div class="stat-n">0</div><div class="stat-l">Sign-ups</div></div>
+  </div>
+</section>
+
+<!-- APP -->
+<div class="app-section">
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="app-tabs" id="appTabs">
+    <button class="app-tab want active" data-tab="want">🎯 Want to Watch <span class="tab-count" id="cnt-want">0</span></button>
+    <button class="app-tab watching" data-tab="watching">▶ Watching <span class="tab-count" id="cnt-watching">0</span></button>
+    <button class="app-tab done" data-tab="done">✓ Finished <span class="tab-count" id="cnt-done">0</span></button>
+  </div>
+
+  <div class="add-row">
+    <input type="text" class="add-input" id="titleInput" placeholder="Movie, show, anime or video title…">
+    <select class="type-select" id="typeSelect">
+      <option value="movie">🎬 Movie</option>
+      <option value="tv">📺 TV Show</option>
+      <option value="anime">⛩ Anime</option>
+      <option value="video">🎥 Video</option>
+    </select>
+    <input type="number" class="year-input" id="yearInput" placeholder="Year" min="1900" max="2030">
+    <select class="rating-select" id="ratingSelect">
+      <option value="0">☆ Rate</option>
+      <option value="1">★ 1</option>
+      <option value="2">★★ 2</option>
+      <option value="3">★★★ 3</option>
+      <option value="4">★★★★ 4</option>
+      <option value="5">★★★★★ 5</option>
+    </select>
+    <button class="btn-add" id="btnAdd">+ Add</button>
+  </div>
+
+  <div class="search-row">
+    <input type="search" class="search-input" id="searchInput" placeholder="Search your watch list…">
+    <select class="sort-select" id="sortSelect">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="alpha">A–Z</option>
+      <option value="rating">Top Rated</option>
+    </select>
+  </div>
+
+  <div class="items-grid" id="itemsGrid"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW TO -->
+<section class="content-section">
+  <div class="section-label">How To Use</div>
+  <h2 class="section-title">HOW TO BUILD YOUR WATCH LIST</h2>
+  <div class="section-body">
+    <p>A great watch list is more than a simple collection of titles — it's your personal entertainment roadmap. MakeAList's Watch List Tracker gives you three curated lists to keep everything organized and easy to browse.</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-step-num">1</div>
+      <div>
+        <h3>Add a Title</h3>
+        <p>Type the movie, TV show, anime, or video title in the input field. Select the media type, add the release year, and optionally assign a star rating. Hit Add to save it instantly.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">2</div>
+      <div>
+        <h3>Choose a Status</h3>
+        <p>Use the tabs to switch between your three lists: <strong>Want to Watch</strong> for your backlog, <strong>Watching</strong> for currently active titles, and <strong>Finished</strong> for everything you've completed.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">3</div>
+      <div>
+        <h3>Move Between Lists</h3>
+        <p>Click the move buttons on any card to shift a title between statuses. Started watching something? Move it from Want to Watch → Watching. Finished? Move it to Finished.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">4</div>
+      <div>
+        <h3>Add Notes & Ratings</h3>
+        <p>Click the Notes button on any card to add personal thoughts, episode counts, or recommendations. Assign star ratings to easily recall your favorites later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DESCRIPTION -->
+<section class="content-section">
+  <div class="section-label">About</div>
+  <h2 class="section-title">THE SMARTER WATCH LIST</h2>
+  <div class="section-body">
+    <p>We've all been there — someone recommends a show, you say "I'll watch it later," and then forget it completely. Or you finish a great series and can't remember what you were watching before. A dedicated watch list solves all of that.</p>
+    <p>MakeAList's Watch List Tracker is designed for movie fans, TV series binge-watchers, anime enthusiasts, and casual YouTube viewers alike. It works equally well as a movie watch list, a TV show tracker, or an anime list. The three-column system — Want to Watch, Watching, and Finished — mirrors how most people naturally think about media consumption.</p>
+    <p>Everything is saved automatically in your browser. No account, no subscription, no app to download. Just open the page and your entire watch list is exactly where you left it. Use the search bar to find any title instantly, or sort your lists by newest, oldest, alphabetical, or top-rated.</p>
+    <p>Whether you're tracking 10 titles or 500, the Watch List Tracker scales beautifully on any screen — desktop, tablet, or mobile. It's the simplest, fastest way to never lose track of what to watch next.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="content-section">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item">
+      <button class="faq-q">Can I track movies, TV shows, and anime all in one place? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Yes! The Watch List Tracker supports Movies, TV Shows, Anime, and Videos. Each title displays a color-coded badge so you can instantly tell them apart in your lists.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Will my watch list be saved if I close the browser? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Absolutely. All your titles are saved automatically in your browser's local storage. Close the tab, restart your computer, or revisit the page weeks later — your complete watch list will still be there.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How do I move a title from "Want to Watch" to "Watching"? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Each title card has quick-move buttons. Click "→ Watching" on any card in your Want to Watch list to move it over. Similarly, click "✓ Finished" to mark a title as complete.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I add star ratings and personal notes? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Yes. You can assign a star rating (1–5) when adding a title, and click the Notes button on any card to add personal comments, episode progress, or recommendations.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is there a limit to how many titles I can add? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">No limit at all. Track as many movies, shows, and anime as you like. The search and sort features make it easy to navigate large lists.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Does it work on mobile? <span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Yes, fully. The Watch List Tracker is completely mobile-responsive. Add titles, move them between lists, and browse your collection on any phone or tablet.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer (JS Component) -->
+<div id="footer-root"></div>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+<script src="app.js"></script>
+
+<script>
+(function(){
+  let data = JSON.parse(localStorage.getItem('mal_watchlist')||'[]');
+  let tab = 'want', search = '', sort = 'newest';
+
+  function save(){localStorage.setItem('mal_watchlist',JSON.stringify(data))}
+  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}
+
+  function stars(n){return n?'★'.repeat(n)+'☆'.repeat(5-n):''}
+
+  function badgeClass(t){return{movie:'badge-movie',tv:'badge-tv',anime:'badge-anime',video:'badge-video'}[t]||'badge-movie'}
+  function badgeLabel(t){return{movie:'Movie',tv:'TV Show',anime:'Anime',video:'Video'}[t]||t}
+
+  function render(){
+    // counts
+    ['want','watching','done'].forEach(s=>{
+      document.getElementById('cnt-'+s).textContent=data.filter(i=>i.status===s).length
+    });
+
+    // stats bar
+    document.getElementById('statsBar').innerHTML=['want','watching','done'].map(s=>`
+      <div class="stat-card">
+        <div class="stat-card-n ${s}">${data.filter(i=>i.status===s).length}</div>
+        <div class="stat-card-l">${{want:'Want to Watch',watching:'Watching',done:'Finished'}[s]}</div>
+      </div>`).join('');
+
+    let items = data.filter(i=>i.status===tab);
+    if(search) items=items.filter(i=>i.title.toLowerCase().includes(search.toLowerCase()));
+    if(sort==='alpha') items.sort((a,b)=>a.title.localeCompare(b.title));
+    else if(sort==='rating') items.sort((a,b)=>b.rating-a.rating);
+    else if(sort==='oldest') items.sort((a,b)=>a.created-b.created);
+    else items.sort((a,b)=>b.created-a.created);
+
+    const moves = {want:[{t:'watching',l:'▶ Watching'},{t:'done',l:'✓ Done'}], watching:[{t:'want',l:'← Backlog'},{t:'done',l:'✓ Done'}], done:[{t:'want',l:'← Backlog'},{t:'watching',l:'▶ Watching'}]};
+    const grid = document.getElementById('itemsGrid');
+    grid.innerHTML = items.length?items.map(item=>`
+      <div class="item-card ${tab}">
+        <span class="item-type-badge ${badgeClass(item.type)}">${badgeLabel(item.type)}</span>
+        <div class="item-title">${esc(item.title)}</div>
+        <div class="item-meta">${item.year||'—'}</div>
+        ${item.rating?`<div class="item-stars">${stars(item.rating)}</div>`:''}
+        ${item.notes?`<div class="item-notes">"${esc(item.notes)}"</div>`:''}
+        <div id="notes-area-${item.id}" style="display:none">
+          <textarea class="notes-input" rows="2" placeholder="Add notes…" onblur="saveNote('${item.id}',this.value)">${esc(item.notes||'')}</textarea>
+        </div>
+        <div class="item-actions">
+          ${moves[tab].map(m=>`<button class="btn-move" onclick="move('${item.id}','${m.t}')">${m.l}</button>`).join('')}
+          <button class="btn-notes" onclick="toggleNotes('${item.id}')">📝 Notes</button>
+          <button class="btn-del" onclick="del('${item.id}')">✕</button>
+        </div>
+      </div>`).join('')
+      :`<div class="empty-state"><div class="empty-icon">${{want:'🎯',watching:'▶️',done:'🏆'}[tab]}</div><p>No titles here yet.<br>Add something above!</p></div>`;
+  }
+
+  window.move=function(id,status){const i=data.find(x=>x.id===id);if(i){i.status=status;save();render()}}
+  window.del=function(id){if(confirm('Remove this title?')){data=data.filter(x=>x.id!==id);save();render()}}
+  window.toggleNotes=function(id){const el=document.getElementById('notes-area-'+id);if(el){el.style.display=el.style.display==='none'?'block':'none'}}
+  window.saveNote=function(id,val){const i=data.find(x=>x.id===id);if(i){i.notes=val.trim();save();render()}}
+
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  document.getElementById('btnAdd').addEventListener('click',()=>{
+    const t=document.getElementById('titleInput').value.trim();
+    if(!t)return;
+    data.unshift({id:uid(),title:t,type:document.getElementById('typeSelect').value,year:document.getElementById('yearInput').value||'',rating:+document.getElementById('ratingSelect').value,notes:'',status:tab,created:Date.now()});
+    document.getElementById('titleInput').value='';
+    document.getElementById('yearInput').value='';
+    document.getElementById('ratingSelect').value='0';
+    save();render();
+  });
+  document.getElementById('titleInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnAdd').click()});
+  document.getElementById('searchInput').addEventListener('input',e=>{search=e.target.value;render()});
+  document.getElementById('sortSelect').addEventListener('change',e=>{sort=e.target.value;render()});
+  document.querySelectorAll('.app-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tab=btn.dataset.tab;
+      document.querySelectorAll('.app-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.closest('.faq-item');
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!open)item.classList.add('open');
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
