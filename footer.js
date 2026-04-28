@@ -10,13 +10,7 @@ function createFooter() {
             <span class="logo-icon">✓</span>
             <span class="logo-text">Make<em>A</em>List</span>
           </a>
-          <p class="footer-tagline">The smartest way to organize your life — one list at a time.</p>
-          <div class="footer-social">
-            <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
-            <a href="#" aria-label="Facebook" class="social-link">f</a>
-            <a href="#" aria-label="Instagram" class="social-link">◎</a>
-            <a href="#" aria-label="Pinterest" class="social-link">𝒫</a>
-          </div>
+          <p class="footer-tagline">The smartest way to organize your life — one list at a time.</p>          
         </div>
         <div class="footer-links-grid">
           <div class="footer-col">
