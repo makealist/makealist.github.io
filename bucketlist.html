@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-06561B0QQ5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-06561B0QQ5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bucket List Maker – Life Goals & Dreams Tracker | MakeAList</title>
+<meta name="description" content="Create your ultimate bucket list. Track life goals, dreams, and experiences you want to achieve. Free online bucket list maker with categories, priorities, and progress tracking.">
+<meta name="keywords" content="bucket list, bucket list maker, life goals, dream list, things to do before you die, life goals tracker, experiences list">
+<link rel="canonical" href="https://makealist.github.io/bucketlist">
+<meta property="og:title" content="Bucket List Maker – Track Your Life Goals">
+<meta property="og:description" content="Create your ultimate bucket list. Track dreams, goals and experiences. Free, no account needed.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Bucket List Maker",
+  "url":"https://makealist.github.io/bucketlist",
+  "description":"Create and track your life goals, dreams, and bucket list experiences.",
+  "applicationCategory":"LifestyleApplication",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-display:'Playfair Display',serif;
+  --font-body:'Mulish',sans-serif;
+  --bg:#fdf8f2;
+  --bg2:#f7f0e6;
+  --bg3:#ede3d4;
+  --surface:#ffffff;
+  --border:#e2d8c8;
+  --text:#2d1f0e;
+  --text2:#7a6550;
+  --text3:#b0987c;
+  --accent:#c9622a;
+  --accent2:#e8854d;
+  --accent-pale:#fde8d8;
+  --teal:#2a7f7a;
+  --teal-pale:#d0efec;
+  --sky:#2a5f9e;
+  --sky-pale:#d5e8f8;
+  --purple:#6b2a9e;
+  --purple-pale:#ead5f8;
+  --done-bg:#f0fdf4;
+  --done-border:#86efac;
+  --radius:14px;
+  --shadow:0 4px 20px rgba(0,0,0,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(253,248,242,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.35rem;color:var(--accent)}
+.nav-brand-icon{width:34px;height:34px;background:var(--accent);border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1rem}
+.nav-back{font-size:.82rem;color:var(--text2);padding:6px 14px;border-radius:99px;border:1px solid var(--border);transition:.2s;cursor:pointer}
+.nav-back:hover{color:var(--accent);border-color:var(--accent)}
+
+/* HERO */
+.hero{padding:80px 24px 60px;text-align:center;background:radial-gradient(ellipse 100% 60% at 50% 0%,var(--accent-pale),transparent 70%);position:relative;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:.8rem;color:var(--text2);margin-bottom:22px}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;margin-bottom:18px;color:var(--text)}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{font-size:1.05rem;color:var(--text2);max-width:500px;margin:0 auto 36px;font-weight:300}
+.hero-quote{font-family:var(--font-display);font-style:italic;font-size:1rem;color:var(--text3);margin-top:24px}"Life is short. Make your list long."</div>
+
+/* PROGRESS BAR */
+.progress-section{max-width:800px;margin:0 auto;padding:0 24px 40px}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.progress-title{font-weight:600;font-size:.9rem;color:var(--text2)}
+.progress-pct{font-family:var(--font-display);font-size:1.8rem;color:var(--accent)}
+.progress-track{height:10px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .6s ease}
+.cat-counts{display:flex;flex-wrap:wrap;gap:8px}
+.cat-count{font-size:.75rem;padding:3px 12px;border-radius:99px;font-weight:600}
+
+/* APP */
+.app-section{padding:0 24px 60px;max-width:900px;margin:0 auto}
+.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.filter-btn{padding:6px 16px;border-radius:99px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;font-family:var(--font-body);font-size:.82rem;font-weight:500;transition:.15s}
+.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filter-btn:not(.active):hover{border-color:var(--accent);color:var(--accent)}
+.add-panel{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px;box-shadow:var(--shadow)}
+.add-panel h3{font-size:.9rem;font-weight:600;margin-bottom:14px;color:var(--text2)}
+.add-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.add-input{flex:1;min-width:200px;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:.9rem;transition:.2s}
+.add-input:focus{outline:none;border-color:var(--accent)}
+.cat-select,.pri-select{padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:.85rem;cursor:pointer}
+.cat-select:focus,.pri-select:focus{outline:none;border-color:var(--accent)}
+.desc-input{width:100%;padding:9px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:.85rem;margin-bottom:10px;resize:none}
+.desc-input:focus{outline:none;border-color:var(--accent)}
+.btn-add{padding:10px 22px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-family:var(--font-body);font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s}
+.btn-add:hover{background:var(--accent2);transform:translateY(-1px)}
+.sort-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.sort-label{font-size:.8rem;color:var(--text3);font-weight:500}
+.sort-select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-family:var(--font-body);font-size:.82rem;cursor:pointer}
+.search-input{flex:1;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--font-body);font-size:.82rem}
+.search-input:focus{outline:none;border-color:var(--accent)}
+
+/* CARDS */
+.items-list{display:flex;flex-direction:column;gap:10px}
+.bucket-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:flex-start;gap:14px;transition:.2s;position:relative}
+.bucket-card:hover{box-shadow:var(--shadow);border-color:var(--accent-pale)}
+.bucket-card.achieved{background:var(--done-bg);border-color:var(--done-border)}
+.bucket-card.achieved .card-title{text-decoration:line-through;color:var(--text3)}
+.check-btn{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:none;cursor:pointer;display:grid;place-items:center;font-size:.85rem;transition:.2s;flex-shrink:0;margin-top:2px}
+.bucket-card.achieved .check-btn{background:var(--accent);border-color:var(--accent);color:#fff}
+.check-btn:hover{border-color:var(--accent)}
+.card-body{flex:1;min-width:0}
+.card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.card-title{font-weight:600;font-size:.95rem;word-break:break-word}
+.card-cat{font-size:.7rem;font-weight:600;padding:2px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0}
+.card-pri{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px;flex-shrink:0}
+.pri-dream{background:#fef9c3;color:#854d0e}
+.pri-plan{background:#dbeafe;color:#1e40af}
+.pri-soon{background:#fce7f3;color:#9d174d}
+.cat-travel{background:var(--sky-pale);color:var(--sky)}
+.cat-adventure{background:var(--accent-pale);color:var(--accent)}
+.cat-learning{background:var(--purple-pale);color:var(--purple)}
+.cat-career{background:var(--teal-pale);color:var(--teal)}
+.cat-wellness{background:#f0fdf4;color:#166534}
+.cat-creative{background:#fdf4ff;color:#7e22ce}
+.cat-social{background:#fef2f2;color:#991b1b}
+.cat-finance{background:#fefce8;color:#713f12}
+.cat-other{background:var(--bg3);color:var(--text2)}
+.card-desc{font-size:.83rem;color:var(--text2);margin-top:4px;word-break:break-word}
+.card-date{font-size:.75rem;color:var(--text3);margin-top:6px}
+.card-achieved-date{font-size:.75rem;color:#166534;margin-top:6px;font-weight:600}
+.card-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.btn-del{font-size:.72rem;padding:3px 10px;border-radius:99px;border:1px solid var(--border);background:none;color:var(--text3);cursor:pointer;transition:.15s;font-family:var(--font-body)}
+.btn-del:hover{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.btn-edit{font-size:.72rem;padding:3px 10px;border-radius:99px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;transition:.15s;font-family:var(--font-body)}
+.btn-edit:hover{border-color:var(--accent);color:var(--accent)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-icon{font-size:3rem;margin-bottom:12px}
+
+/* CONTENT */
+.content-section{padding:70px 24px;max-width:820px;margin:0 auto}
+.section-label{display:inline-block;padding:4px 14px;border-radius:99px;background:var(--accent-pale);color:var(--accent);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);margin-bottom:14px;line-height:1.15}
+.section-body{color:var(--text2);line-height:1.9;font-size:.93rem}
+.section-body p{margin-bottom:14px}
+.how-steps{display:flex;flex-direction:column;gap:16px;margin-top:28px}
+.how-step{display:flex;gap:16px;align-items:flex-start;padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.how-step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-display);font-size:1.3rem;display:grid;place-items:center;flex-shrink:0}
+.how-step h3{font-size:.95rem;margin-bottom:4px}
+.how-step p{font-size:.86rem;color:var(--text2)}
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.faq-item{border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.faq-q{width:100%;text-align:left;padding:15px 20px;background:none;border:none;cursor:pointer;font-family:var(--font-body);font-size:.9rem;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q:hover{color:var(--accent)}
+.faq-arrow{font-size:.75rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;font-size:.87rem;color:var(--text2);line-height:1.8}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 16px}
+.divider{height:1px;background:var(--border);margin:0 24px}
+footer{text-align:center;padding:32px 24px;color:var(--text3);font-size:.82rem;border-top:1px solid var(--border);margin-top:40px}
+footer a{color:var(--accent)}
+@media(max-width:600px){
+  .add-row{flex-direction:column}
+  .cat-select,.pri-select{width:100%}
+}
+</style>
+</head>
+<body>
+<!-- Header (JS Component) -->
+<div id="header-root"></div>
+
+<section class="hero">
+  <div class="hero-eyebrow">✨ Your life goals, organized</div>
+  <h1>Your <em>Bucket</em> List</h1>
+  <p>Capture every dream, goal, and experience you want to have in this lifetime. Track your journey from aspiration to achievement.</p>
+  <div class="hero-quote">"Life is short. Make your list long."</div>
+</section>
+
+<div class="progress-section">
+  <div class="progress-header">
+    <span class="progress-title" id="progressLabel">0 goals achieved</span>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="cat-counts" id="catCounts"></div>
+</div>
+
+<div class="app-section">
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All Goals</button>
+    <button class="filter-btn" data-filter="active">Active</button>
+    <button class="filter-btn" data-filter="achieved">Achieved ✓</button>
+    <button class="filter-btn" data-cat="travel">✈ Travel</button>
+    <button class="filter-btn" data-cat="adventure">🧗 Adventure</button>
+    <button class="filter-btn" data-cat="learning">📚 Learning</button>
+    <button class="filter-btn" data-cat="career">💼 Career</button>
+    <button class="filter-btn" data-cat="wellness">🌿 Wellness</button>
+    <button class="filter-btn" data-cat="creative">🎨 Creative</button>
+    <button class="filter-btn" data-cat="social">❤ Social</button>
+  </div>
+
+  <div class="add-panel">
+    <h3>+ Add a Bucket List Goal</h3>
+    <div class="add-row">
+      <input type="text" class="add-input" id="goalInput" placeholder="What do you want to do, see, or experience?">
+      <select class="cat-select" id="catSelect">
+        <option value="travel">✈ Travel</option>
+        <option value="adventure">🧗 Adventure</option>
+        <option value="learning">📚 Learning</option>
+        <option value="career">💼 Career</option>
+        <option value="wellness">🌿 Wellness</option>
+        <option value="creative">🎨 Creative</option>
+        <option value="social">❤ Social</option>
+        <option value="finance">💰 Finance</option>
+        <option value="other">✨ Other</option>
+      </select>
+      <select class="pri-select" id="priSelect">
+        <option value="dream">💭 Dream</option>
+        <option value="plan">📅 Planning</option>
+        <option value="soon">🔥 Doing Soon</option>
+      </select>
+    </div>
+    <textarea class="desc-input" id="descInput" rows="2" placeholder="Add details, notes, or why this matters to you (optional)…"></textarea>
+    <button class="btn-add" id="btnAdd">Add to Bucket List</button>
+  </div>
+
+  <div class="sort-row">
+    <span class="sort-label">Sort:</span>
+    <select class="sort-select" id="sortSelect">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="alpha">A–Z</option>
+      <option value="soon">By Priority</option>
+    </select>
+    <input type="search" class="search-input" id="searchInput" placeholder="Search goals…">
+  </div>
+
+  <div class="items-list" id="itemsList"></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="content-section">
+  <div class="section-label">How To Use</div>
+  <h2 class="section-title">How to Create Your Bucket List</h2>
+  <div class="section-body">
+    <p>A bucket list is one of the most powerful tools for living a purposeful life. Writing down your dreams makes them real, trackable, and achievable. Here's how to make the most of this bucket list maker.</p>
+  </div>
+  <div class="how-steps">
+    <div class="how-step"><div class="how-step-num">1</div><div><h3>Add a Goal</h3><p>Type any goal, dream, or experience you want to have. It could be grand (climb Kilimanjaro) or personal (learn to bake sourdough). Add a description to capture why it matters to you.</p></div></div>
+    <div class="how-step"><div class="how-step-num">2</div><div><h3>Choose a Category</h3><p>Categorize your goal as Travel, Adventure, Learning, Career, Wellness, Creative, Social, or Finance. This helps you see patterns in your dreams and ensures balance across life areas.</p></div></div>
+    <div class="how-step"><div class="how-step-num">3</div><div><h3>Set a Priority</h3><p>Mark goals as a Dream (long-term aspiration), Planning (actively working toward), or Doing Soon (happening in the near future). This gives your list meaningful direction.</p></div></div>
+    <div class="how-step"><div class="how-step-num">4</div><div><h3>Mark as Achieved</h3><p>When you complete a goal, click the circle checkbox to mark it as Achieved. The date of completion is recorded and your progress percentage updates instantly.</p></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="content-section">
+  <div class="section-label">About</div>
+  <h2 class="section-title">Why You Need a Bucket List</h2>
+  <div class="section-body">
+    <p>Research consistently shows that people with written goals are significantly more likely to achieve them. A bucket list takes this further — it's not just about goals for this year, but for your entire life. It forces you to think about what truly matters to you, what experiences would make you feel fully alive, and what legacy you want to create.</p>
+    <p>MakeAList's Bucket List Maker is designed to be beautifully simple. There's no complex planning framework to learn. You write your dreams down, organize them by category and priority, and start checking them off. The visual progress bar and achievement percentage make your journey tangible and motivating.</p>
+    <p>The categories — Travel, Adventure, Learning, Career, Wellness, Creative, Social, and Finance — are carefully chosen to help you build a balanced and rich life, not just one that optimizes for one area. Many bucket lists focus purely on travel or adventure, but the most fulfilled lives include creative achievements, deep relationships, personal growth, and financial freedom too.</p>
+    <p>Your bucket list is saved automatically. Come back to it regularly — add new dreams as they occur to you, update priorities as life changes, and celebrate every time you get to mark something as Achieved.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="content-section">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q">What should I put on my bucket list? <span class="faq-arrow">▼</span></button><div class="faq-a">Anything that would make your life feel more complete, adventurous, or meaningful. Think about places you've always wanted to visit, skills you want to master, experiences that scare you a little, relationships you want to build, and contributions you want to make. There are no wrong answers on a bucket list.</div></div>
+    <div class="faq-item"><button class="faq-q">How many items should be on a bucket list? <span class="faq-arrow">▼</span></button><div class="faq-a">There's no ideal number — some people have 10 deep, meaningful goals; others have 200+ varied experiences. What matters is that each item is genuine and meaningful to you personally. Start with what comes naturally and add more over time as inspiration strikes.</div></div>
+    <div class="faq-item"><button class="faq-q">Is my bucket list data private and saved? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes, your bucket list is saved locally in your browser. No one else can see it, and it requires no account. Your data persists across sessions as long as you use the same browser and don't clear local storage.</div></div>
+    <div class="faq-item"><button class="faq-q">Can I edit a goal after I've added it? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes, click the Edit button on any goal card to modify the title or description. Your changes are saved automatically.</div></div>
+    <div class="faq-item"><button class="faq-q">What do the priority levels mean? <span class="faq-arrow">▼</span></button><div class="faq-a">"Dream" is for long-term aspirations you haven't started planning. "Planning" means you're actively working toward it. "Doing Soon" means it's happening in the near future. Use these to focus your attention and energy on what's most immediate.</div></div>
+    <div class="faq-item"><button class="faq-q">Does this work on mobile? <span class="faq-arrow">▼</span></button><div class="faq-a">Yes, fully. The Bucket List Maker is mobile-responsive and works smoothly on all smartphones and tablets. Add goals, check them off, and browse your list on the go.</div></div>
+  </div>
+</section>
+
+<!-- Footer (JS Component) -->
+<div id="footer-root"></div>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+  let data=JSON.parse(localStorage.getItem('mal_bucketlist')||'[]');
+  let activeFilter='all', activeCat='', search='', sort='newest';
+  function save(){localStorage.setItem('mal_bucketlist',JSON.stringify(data))}
+  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+  const catLabels={travel:'✈ Travel',adventure:'🧗 Adventure',learning:'📚 Learning',career:'💼 Career',wellness:'🌿 Wellness',creative:'🎨 Creative',social:'❤ Social',finance:'💰 Finance',other:'✨ Other'};
+  const priLabels={dream:'💭 Dream',plan:'📅 Planning',soon:'🔥 Soon'};
+
+  function render(){
+    const total=data.length, achieved=data.filter(i=>i.achieved).length;
+    const pct=total?Math.round(achieved/total*100):0;
+    document.getElementById('progressLabel').textContent=`${achieved} of ${total} goals achieved`;
+    document.getElementById('progressPct').textContent=pct+'%';
+    document.getElementById('progressFill').style.width=pct+'%';
+
+    // cat counts
+    const cats={};data.forEach(i=>{cats[i.cat]=(cats[i.cat]||0)+1});
+    const catColors={travel:'#dbeafe',adventure:'#fde8d8',learning:'#ead5f8',career:'#d0efec',wellness:'#f0fdf4',creative:'#fdf4ff',social:'#fef2f2',finance:'#fefce8',other:'#ede3d4'};
+    const catText={travel:'#1e40af',adventure:'#c9622a',learning:'#6b2a9e',career:'#2a7f7a',wellness:'#166534',creative:'#7e22ce',social:'#991b1b',finance:'#713f12',other:'#7a6550'};
+    document.getElementById('catCounts').innerHTML=Object.entries(cats).map(([c,n])=>`<span class="cat-count" style="background:${catColors[c]||'#eee'};color:${catText[c]||'#333'}">${catLabels[c]||c}: ${n}</span>`).join('');
+
+    let items=[...data];
+    if(activeFilter==='active') items=items.filter(i=>!i.achieved);
+    else if(activeFilter==='achieved') items=items.filter(i=>i.achieved);
+    if(activeCat) items=items.filter(i=>i.cat===activeCat);
+    if(search) items=items.filter(i=>i.title.toLowerCase().includes(search.toLowerCase())||i.desc?.toLowerCase().includes(search.toLowerCase()));
+    const priOrder={soon:0,plan:1,dream:2};
+    if(sort==='alpha') items.sort((a,b)=>a.title.localeCompare(b.title));
+    else if(sort==='soon') items.sort((a,b)=>(priOrder[a.pri]||2)-(priOrder[b.pri]||2));
+    else if(sort==='oldest') items.sort((a,b)=>a.created-b.created);
+    else items.sort((a,b)=>b.created-a.created);
+
+    document.getElementById('itemsList').innerHTML=items.length?items.map(item=>`
+      <div class="bucket-card ${item.achieved?'achieved':''}">
+        <button class="check-btn" onclick="toggle('${item.id}')">${item.achieved?'✓':''}</button>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-title">${esc(item.title)}</span>
+            <span class="card-cat cat-${item.cat}">${catLabels[item.cat]||item.cat}</span>
+            <span class="card-pri pri-${item.pri}">${priLabels[item.pri]||item.pri}</span>
+          </div>
+          ${item.desc?`<div class="card-desc">${esc(item.desc)}</div>`:''}
+          ${item.achieved&&item.achievedDate?`<div class="card-achieved-date">🎉 Achieved on ${item.achievedDate}</div>`:''}
+          <div class="card-actions">
+            <button class="btn-edit" onclick="editItem('${item.id}')">✏ Edit</button>
+            <button class="btn-del" onclick="delItem('${item.id}')">✕ Remove</button>
+          </div>
+        </div>
+      </div>`).join('')
+      :`<div class="empty-state"><div class="empty-icon">🌟</div><p>No goals here yet.<br>Add your first bucket list item above!</p></div>`;
+  }
+
+  window.toggle=function(id){const i=data.find(x=>x.id===id);if(i){i.achieved=!i.achieved;i.achievedDate=i.achieved?new Date().toLocaleDateString():null;save();render()}}
+  window.delItem=function(id){if(confirm('Remove this goal?')){data=data.filter(x=>x.id!==id);save();render()}}
+  window.editItem=function(id){
+    const item=data.find(x=>x.id===id);if(!item)return;
+    const newTitle=prompt('Edit goal:',item.title);
+    if(newTitle&&newTitle.trim()){item.title=newTitle.trim();save();render()}
+  }
+
+  document.getElementById('btnAdd').addEventListener('click',()=>{
+    const t=document.getElementById('goalInput').value.trim();if(!t)return;
+    data.unshift({id:uid(),title:t,cat:document.getElementById('catSelect').value,pri:document.getElementById('priSelect').value,desc:document.getElementById('descInput').value.trim(),achieved:false,achievedDate:null,created:Date.now()});
+    document.getElementById('goalInput').value='';document.getElementById('descInput').value='';
+    save();render();
+  });
+  document.getElementById('goalInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnAdd').click()});
+  document.getElementById('searchInput').addEventListener('input',e=>{search=e.target.value;render()});
+  document.getElementById('sortSelect').addEventListener('change',e=>{sort=e.target.value;render()});
+
+  document.querySelectorAll('[data-filter]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeFilter=btn.dataset.filter;activeCat='';
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');render();
+    });
+  });
+  document.querySelectorAll('[data-cat]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(activeCat===btn.dataset.cat){activeCat='';document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));document.querySelector('[data-filter="all"]').classList.add('active');activeFilter='all';}
+      else{activeCat=btn.dataset.cat;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter='all';}
+      render();
+    });
+  });
+
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');});
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
