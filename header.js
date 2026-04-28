@@ -13,12 +13,12 @@ function createHeader() {
           <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks" role="list">
-          <li><a href="#app" class="nav-link">App</a></li>
-          <li><a href="#features" class="nav-link">Features</a></li>
-          <li><a href="#list-types" class="nav-link">List Types</a></li>
+          <li><a href="/#app" class="nav-link">App</a></li>
+          <li><a href="/watchlist" class="nav-link">Watch List</a></li>
+          <li><a href="/bucketlist" class="nav-link">Bucket List</a></li>
           <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#app" class="nav-cta">Start Free</a></li>
+          <li><a href="/#app" class="nav-cta">Start Free</a></li>
         </ul>
       </div>
     </nav>
