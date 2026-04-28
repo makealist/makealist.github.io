@@ -59,13 +59,6 @@ a{color:inherit;text-decoration:none}
 ul{list-style:none}
 img{max-width:100%}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(10,11,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:1.5rem;letter-spacing:.05em}
-.nav-brand-icon{width:32px;height:32px;background:var(--want);border-radius:8px;display:grid;place-items:center;color:#000;font-size:.9rem}
-.nav-back{font-size:.85rem;color:var(--text2);padding:6px 14px;border-radius:99px;border:1px solid var(--border);transition:.2s;cursor:pointer}
-.nav-back:hover{color:var(--want);border-color:var(--want)}
-
 /* HERO */
 .hero{padding:80px 24px 60px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(232,184,75,.12),transparent);position:relative;overflow:hidden}
 .hero::before{content:'▶';position:absolute;font-size:20rem;opacity:.015;top:-40px;left:50%;transform:translateX(-50%);pointer-events:none;line-height:1}
@@ -160,8 +153,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,11,15,.9);backdrop-filt
 .faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s;font-size:.88rem;color:var(--text2);line-height:1.8}
 .faq-item.open .faq-a{max-height:300px;padding:0 20px 16px}
 .divider{height:1px;background:var(--border);margin:0 24px}
-footer{text-align:center;padding:32px 24px;color:var(--text3);font-size:.83rem;border-top:1px solid var(--border);margin-top:40px}
-footer a{color:var(--want)}
 
 /* MOBILE */
 @media(max-width:600px){
