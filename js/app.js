@@ -307,3 +307,46 @@
     init();
   }
 })();
+
+// Add a loading state for PDF
+var pdfLoaded = false;
+
+// Load jsPDF with a loading indicator
+function loadPdfLibrary() {
+  if (typeof window.jspdf !== 'undefined' && window.jspdf.jsPDF) {
+    pdfLoaded = true;
+    return Promise.resolve();
+  }
+  
+  return new Promise(function(resolve, reject) {
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    script.onload = function() {
+      pdfLoaded = true;
+      resolve();
+    };
+    script.onerror = function() {
+      reject(new Error('Failed to load PDF library'));
+    };
+    // Add a timeout
+    var timeout = setTimeout(function() {
+      reject(new Error('PDF library load timeout'));
+    }, 10000);
+    script.onload = function() {
+      clearTimeout(timeout);
+      pdfLoaded = true;
+      resolve();
+    };
+    document.head.appendChild(script);
+  });
+}
+
+// Pre-load jsPDF when page loads
+function init() {
+  initListMaker();
+  initReveal();
+  // Pre-load PDF library in background
+  loadPdfLibrary().catch(function(err) {
+    console.log('PDF library pre-load failed:', err);
+  });
+}
