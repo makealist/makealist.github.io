@@ -1,75 +1,70 @@
-/* ===================================================
+/* ==========================================================================
    Header component — Make A List Online
-   Injects the site header into #header-root
-   =================================================== */
+   Injects the sticky site header into #site-header-root
+   ========================================================================== */
 (function () {
-  const NAV_LINKS = [
-    { href: '#list-maker', label: 'List Maker' },
-    { href: '#features', label: 'Features' },
-    { href: '#how-it-works', label: 'How It Works' },
-    { href: '#use-cases', label: 'Use Cases' },
-    { href: '#faq', label: 'FAQ' }
-  ];
+  "use strict";
 
-  function renderHeader() {
-    const root = document.getElementById('header-root');
+  var HEADER_HTML = [
+    '<div class="header-inner">',
+      '<a href="#top" class="brand" aria-label="Make A List Online home">',
+        '<span class="brand-mark">',
+          '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">',
+            '<path d="M4 6h16M4 12h10M4 18h13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>',
+            '<path d="M17 17l2 2 4-4" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+          '</svg>',
+        '</span>',
+        '<span>Make A List<small>online list &amp; checklist maker</small></span>',
+      '</a>',
+
+      '<nav class="nav-links" id="primaryNav" aria-label="Primary">',
+        '<a href="#list-maker">List Maker</a>',
+        '<a href="#list-types">List Types</a>',
+        '<a href="#how-it-works">How It Works</a>',
+        '<a href="#templates">PDF Templates</a>',
+        '<a href="#use-cases">Use Cases</a>',
+        '<a href="#faq">FAQ</a>',
+      '</nav>',
+
+      '<div class="header-cta">',
+        '<a href="#list-maker" class="btn btn-outline btn-sm">Sign In</a>',
+        '<a href="#list-maker" class="btn btn-gradient btn-sm">Start a List — Free</a>',
+        '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation menu">',
+          '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#171532" stroke-width="2" stroke-linecap="round"/></svg>',
+        '</button>',
+      '</div>',
+    '</div>'
+  ].join("");
+
+  function mount() {
+    var root = document.getElementById("site-header-root");
     if (!root) return;
 
-    const links = NAV_LINKS.map(
-      (l) => `<a class="nav-link" href="${l.href}">${l.label}</a>`
-    ).join('');
+    var header = document.createElement("header");
+    header.className = "site-header";
+    header.id = "top";
+    header.innerHTML = HEADER_HTML;
+    root.appendChild(header);
 
-    root.innerHTML = `
-      <header class="site-header" id="site-header">
-        <div class="container header-inner">
-          <a class="brand" href="#hero" aria-label="Make A List Online — home">
-            <svg viewBox="0 0 32 32" class="brand-mark" aria-hidden="true">
-              <rect width="32" height="32" rx="8" fill="#2563eb"/>
-              <path d="M9 11h14M9 16h14M9 21h10" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-            <span class="brand-text">make<span class="brand-accent">A</span>list<span class="brand-dim">.online</span></span>
-          </a>
-
-          <nav class="site-nav" id="site-nav" aria-label="Primary">
-            ${links}
-          </nav>
-
-          <a class="btn btn-primary btn-small header-cta" href="#list-maker">Make A List</a>
-
-          <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </header>
-    `;
-
-    const toggle = document.getElementById('nav-toggle');
-    const nav = document.getElementById('site-nav');
-
-    toggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('is-open');
-      toggle.classList.toggle('is-open', isOpen);
-      toggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    nav.querySelectorAll('.nav-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        toggle.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
+    var toggle = document.getElementById("navToggle");
+    var nav = document.getElementById("primaryNav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
       });
-    });
-
-    // shrink header on scroll
-    const header = document.getElementById('site-header');
-    window.addEventListener(
-      'scroll',
-      () => {
-        header.classList.toggle('is-scrolled', window.scrollY > 12);
-      },
-      { passive: true }
-    );
+      nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          nav.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
   }
 
-  document.addEventListener('DOMContentLoaded', renderHeader);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mount);
+  } else {
+    mount();
+  }
 })();
