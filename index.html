@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
 <!-- Schema.org: WebApplication -->
 <script type="application/ld+json">
@@ -50,6 +50,8 @@
     "Auto-saving to do list maker",
     "Grocery and shopping list maker",
     "Checklist maker with export",
+    "Ready-made templates for every list type",
+    "Save any list as a PDF or text file",
     "Mobile compatible list website"
   ]
 }
@@ -152,7 +154,14 @@
           big project launch, or just want a simple <strong>to do list maker</strong> that doesn't ask for an account, this is
           the place to build it. Type an item, hit enter, and watch your <strong>list online</strong> update instantly — no
           downloads, no logins, no ads getting in the way.
-        </p>        
+        </p>
+        <p class="lead reveal">
+          This is what <strong>making a list</strong> should always have felt like: quick, clean, and entirely yours. Use it as a
+          <strong>checklist maker</strong> for packing before a trip, an <strong>online shopping list maker</strong> for the
+          weekend haul, or just a scratchpad for the ten things rattling around your head right now. It's your list, running
+          in your browser, built to disappear into the background so the only thing you notice is how little friction
+          is left between an idea and a finished, checked-off line.
+        </p>
         <div class="hero-actions reveal">
           <a href="#list-maker" class="btn btn-primary">Start Your List</a>
           <a href="#how-it-works" class="btn btn-ghost">See How It Works</a>
@@ -191,13 +200,39 @@
   <!-- ============ LIST MAKER TOOL ============ -->
   <section id="list-maker" class="section tool-section" aria-label="List maker tool">
     <div class="container">
-      <p class="eyebrow">// List Maker App</p>
-      <h2 class="reveal">Your List Maker, Ready to Run</h2>      
+      <p class="eyebrow">// list-maker.app</p>
+      <h2 class="reveal">Your List Maker, Ready to Run</h2>
+      <p class="lead reveal" style="max-width:70ch">
+        This is the actual <strong>list maker</strong> — not a preview, not a demo. Add an item below and it becomes part
+        of your <strong>list online</strong> immediately, saved right in this browser so it's here when you come back.
+        Check items off as you finish them, delete the ones you don't need, and clear the whole board when the list's
+        done its job. Every <strong>to do list maker</strong> should be this direct: type, enter, done. Use it to
+        <strong>create a list</strong> for anything — errands, ideas, ingredients, or an actual to-do list for tomorrow
+        morning. Pick a ready-made template below to start with common items already filled in, or leave it blank and
+        build the whole thing yourself.
+      </p>
 
       <div class="terminal reveal" role="group" aria-label="Interactive list maker">
         <div class="terminal-bar">
           <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
           <input id="list-title" class="terminal-filename" value="my-list.txt" aria-label="List name" maxlength="40">
+        </div>
+
+        <div class="terminal-template-row">
+          <label for="list-type" class="template-label">Start from a template</label>
+          <select id="list-type" class="template-select" aria-label="Choose a list type template">
+            <option value="blank" selected>Blank list</option>
+            <option value="grocery">Grocery List</option>
+            <option value="todo">To-Do List</option>
+            <option value="checklist">Checklist</option>
+            <option value="packing">Packing List</option>
+            <option value="shopping">Shopping List</option>
+            <option value="study">Study List</option>
+            <option value="habit">Habit Tracker</option>
+            <option value="project">Project Tasks</option>
+            <option value="bucket">Bucket List</option>
+            <option value="reading">Reading List</option>
+          </select>
         </div>
 
         <form id="list-form" class="terminal-input-row">
@@ -216,24 +251,17 @@
             <button id="clear-completed" type="button" class="btn btn-text">Clear done</button>
             <button id="clear-all" type="button" class="btn btn-text">Clear all</button>
             <button id="download-list" type="button" class="btn btn-text">Download .txt</button>
+            <button id="download-pdf" type="button" class="btn btn-text">Save as PDF</button>
           </div>
         </div>
       </div>
 
-      <p class="lead reveal" style="max-width:70ch">
-        This is the actual <strong>list maker</strong> — not a preview, not a demo. Add an item below and it becomes part
-        of your <strong>list online</strong> immediately, saved right in this browser so it's here when you come back.
-        Check items off as you finish them, delete the ones you don't need, and clear the whole board when the list's
-        done its job. Every <strong>to do list maker</strong> should be this direct: type, enter, done. Use it to
-        <strong>create a list</strong> for anything — errands, ideas, ingredients, or an actual to-do list for tomorrow
-        morning.
-      </p>
-  
       <p class="reveal" style="max-width:70ch; margin-top:1.6em;">
         Rename the file at the top of the terminal to whatever suits the list — <em>groceries.txt</em>,
-        <em>packing.txt</em>, <em>sprint.txt</em> — and it'll download under that name later. Everything you type
-        stays in this browser only; nothing is sent anywhere or shared with anyone else, which is part of what keeps
-        a simple <strong>list maker</strong> simple.
+        <em>packing.txt</em>, <em>sprint.txt</em> — and it'll download under that name later, whether you save it as
+        a plain text file or as a formatted <strong>PDF</strong> ready to print. Everything you type stays in this
+        browser only; nothing is sent anywhere or shared with anyone else, which is part of what keeps a simple
+        <strong>list maker</strong> simple.
       </p>
     </div>
   </section>
@@ -274,7 +302,12 @@
         <article class="card reveal">
           <svg class="icon icon-pink" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v24m0 0-9-9m9 9 9-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 34v6h28v-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h3>Export &amp; Print</h3>
-          <p>Download any checklist as a plain text file with one click, then print it, paste it into an email, or hand it to someone else entirely.</p>
+          <p>Download any checklist as a plain text file or a formatted PDF with one click, then print it, paste it into an email, or hand it to someone else entirely.</p>
+        </article>
+        <article class="card reveal">
+          <svg class="icon icon-green" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="32" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="24" x2="32" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="32" x2="26" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Ready-Made Templates</h3>
+          <p>Pick a list type — grocery, to-do, packing, and more — from the dropdown in the list maker, and it pre-fills starter items so you're editing instead of staring at a blank page.</p>
         </article>
         <article class="card reveal">
           <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="12" y1="22" x2="12" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="18" y1="22" x2="18" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="24" y1="22" x2="24" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="14" y1="30" x2="34" y2="30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
@@ -448,21 +481,22 @@
       <h2 class="reveal">Start Any List You Need</h2>
       <p class="lead reveal" style="max-width:70ch">
         There are no locked templates here, no "upgrade to unlock" screens. Every list type below is really just the
-        same fast input box — these are simply the ones people reach for most when they open the tool to
+        same fast input box, pre-loaded with a starter set of common items — tap any one to send it straight into the
+        list maker above, ready to edit. These are simply the types people reach for most when they open the tool to
         <strong>create a list online</strong>, listed here so search engines and people scanning this page can quickly
         confirm this list maker covers what they need.
       </p>
-      <div class="chip-row reveal" role="list">
-        <span role="listitem" class="chip">Grocery List</span>
-        <span role="listitem" class="chip">To-Do List</span>
-        <span role="listitem" class="chip">Packing List</span>
-        <span role="listitem" class="chip">Checklist</span>
-        <span role="listitem" class="chip">Shopping List</span>
-        <span role="listitem" class="chip">Study List</span>
-        <span role="listitem" class="chip">Habit Tracker</span>
-        <span role="listitem" class="chip">Project Tasks</span>
-        <span role="listitem" class="chip">Bucket List</span>
-        <span role="listitem" class="chip">Reading List</span>
+      <div class="chip-row reveal" role="group" aria-label="Load a list template">
+        <button type="button" class="chip" data-template="grocery">Grocery List</button>
+        <button type="button" class="chip" data-template="todo">To-Do List</button>
+        <button type="button" class="chip" data-template="packing">Packing List</button>
+        <button type="button" class="chip" data-template="checklist">Checklist</button>
+        <button type="button" class="chip" data-template="shopping">Shopping List</button>
+        <button type="button" class="chip" data-template="study">Study List</button>
+        <button type="button" class="chip" data-template="habit">Habit Tracker</button>
+        <button type="button" class="chip" data-template="project">Project Tasks</button>
+        <button type="button" class="chip" data-template="bucket">Bucket List</button>
+        <button type="button" class="chip" data-template="reading">Reading List</button>
       </div>
       <p class="reveal" style="max-width:70ch">
         Naming your list is optional — the field at the top of the terminal just holds whatever title makes sense to
@@ -581,9 +615,10 @@
 
 <div id="footer-root"></div>
 
-<script src="js/header.js"></script>
-<script src="js/footer.js"></script>
-<script src="js/list-maker.js"></script>
-<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/footer.js"></script>
+<script src="/js/list-maker.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
