@@ -1,1083 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Make A List Online – Free List Maker, To-Do List & Checklist Maker</title>
-    <meta name="description" content="Make a list online in seconds with our free list maker. Create a to do list, checklist, or grocery list maker — no sign-up, auto-saves, works on any device.">
-    <meta name="keywords" content="list maker, make a list online, list online, online list, make a list, create a list, to do list maker, checklist maker, online to do list maker, grocery list maker, create a list online, making a list, list website, checklist online, online shopping list maker">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Make A List Online">
-    <link rel="canonical" href="https://makealist.github.io/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make A List Online Free | List Maker, To Do List Maker &amp; Checklist Maker</title>
+<meta name="description" content="Make a list online in seconds with our free list maker. Build a to do list, grocery list, checklist or shopping list, then save your list as a stylish PDF. No sign-up required.">
+<meta name="keywords" content="list maker, make a list online, list online, online list, make a list, create a list, to do list maker, checklist maker, online to do list maker, grocery list maker, create a list online, making a list, list website, checklist online, online shopping list maker">
+<link rel="canonical" href="https://makealist.github.io/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#7c3aed">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Make A List Online – Free List Maker, To-Do List & Checklist Maker">
-    <meta property="og:description" content="A free, fast list maker for to do lists, checklists, grocery lists and more. No sign-up. Auto-saves in your browser. Works on any device.">
-    <meta property="og:url" content="https://makealist.github.io/">
-    <meta property="og:site_name" content="Make A List Online">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Make A List Online">
+<meta property="og:title" content="Make A List Online Free | List Maker &amp; To Do List Maker">
+<meta property="og:description" content="Create a list online for free. A colorful list maker for to do lists, grocery lists and checklists — with stylish PDF templates to save and print.">
+<meta property="og:url" content="https://makealist.github.io/">
+<meta property="og:image" content="https://makealist.github.io/assets/og-image.png">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Make A List Online – Free List Maker">
-    <meta name="twitter:description" content="Make a list online, free and fast. To do lists, checklists, grocery lists — no sign-up required.">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Make A List Online Free | List Maker &amp; To Do List Maker">
+<meta name="twitter:description" content="Make a list online free — to do lists, grocery lists, checklists and more. Save your finished list as a stylish PDF.">
+<meta name="twitter:image" content="https://makealist.github.io/assets/og-image.png">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M6 8h12M6 12h12M6 16h8' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%237c3aed'/%3E%3Cpath d='M5 7h14M5 12h9M5 17h11' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 
-    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts with display=swap to avoid layout shift -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-    <!-- Inline critical CSS to avoid render-blocking -->
-    <style>
-        /* Critical CSS: minimal reset + hero + terminal layout */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-        :root {
-            --bg: #ffffff;
-            --ink: #0f172a;
-            --muted: #5b6472;
-            --line: #e2e8f0;
-            --panel: #f8fafc;
-            --blue: #2563eb;
-            --green: #16a34a;
-            --orange: #f97316;
-            --purple: #9333ea;
-            --pink: #ec4899;
-            --yellow: #eab308;
-            --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
-            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-            --radius: 14px;
-            --shadow: 0 10px 30px -12px rgba(15, 23, 42, .18);
-            --maxw: 1160px;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-        }
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--ink);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: var(--font-mono);
-            font-weight: 800;
-            line-height: 1.15;
-            margin: 0 0 .5em;
-            letter-spacing: -.01em;
-        }
-        h1 {
-            font-size: clamp(2rem, 4.4vw, 3.2rem);
-        }
-        h2 {
-            font-size: clamp(1.5rem, 3vw, 2.1rem);
-        }
-        .container {
-            max-width: var(--maxw);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .section {
-            padding: 96px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: .5em;
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: .95rem;
-            padding: .8em 1.4em;
-            border-radius: 10px;
-            border: 2px solid var(--ink);
-            text-decoration: none;
-            cursor: pointer;
-            background: #fff;
-            color: var(--ink);
-            transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        .btn-primary {
-            background: var(--ink);
-            color: #fff;
-            border-color: var(--ink);
-        }
-        .btn-primary:hover {
-            background: var(--blue);
-            border-color: var(--blue);
-        }
-        .btn-small {
-            padding: .5em .9em;
-            font-size: .85rem;
-            border-radius: 8px;
-        }
-        .btn-text {
-            border: none;
-            background: none;
-            font-family: var(--font-mono);
-            font-size: .82rem;
-            color: var(--muted);
-            padding: .4em .3em;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .btn-text:hover {
-            color: var(--blue);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: shine 6s linear infinite;
-        }
-        @keyframes shine {
-            0% {
-                background-position: 0% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-        .hero {
-            padding-top: 64px;
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            gap: 48px;
-            align-items: center;
-        }
-        .lead {
-            font-size: 1.05rem;
-            color: var(--muted);
-            max-width: 60ch;
-        }
-        .eyebrow {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            font-size: .85rem;
-            color: var(--blue);
-            letter-spacing: .02em;
-            margin-bottom: .75em;
-        }
-        .hero-actions {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-top: 1.5em;
-        }
-        .floaty {
-            animation: floaty 5s ease-in-out infinite;
-        }
-        @keyframes floaty {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-12px);
-            }
-        }
-        .blink {
-            animation: blink 1.1s step-end infinite;
-        }
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-        /* Terminal critical styles */
-        .terminal {
-            background: #0f172a;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-top: 2.5em;
-            color: #e2e8f0;
-            font-family: var(--font-mono);
-        }
-        .terminal-bar {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: #1e293b;
-        }
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .dot-red {
-            background: #ef4444;
-        }
-        .dot-yellow {
-            background: #eab308;
-        }
-        .dot-green {
-            background: #22c55e;
-        }
-        .terminal-filename {
-            margin-left: 12px;
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-family: var(--font-mono);
-            font-size: .85rem;
-            text-align: center;
-            flex: 1;
-            max-width: 240px;
-        }
-        .terminal-filename:focus {
-            color: #fff;
-            outline: none;
-        }
-        .terminal-template-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding: 12px 20px;
-            background: #1e293b;
-            border-bottom: 1px solid #334155;
-        }
-        .template-label {
-            font-family: var(--font-mono);
-            font-size: .78rem;
-            color: #94a3b8;
-            white-space: nowrap;
-        }
-        .template-select {
-            background: #0f172a;
-            color: #e2e8f0;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: .5em .7em;
-            font-family: var(--font-mono);
-            font-size: .85rem;
-            max-width: 100%;
-        }
-        .template-select:focus {
-            outline: none;
-            border-color: var(--blue);
-        }
-        .terminal-input-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 20px;
-            border-bottom: 1px solid #334155;
-        }
-        .prompt {
-            color: var(--green);
-            font-weight: 700;
-        }
-        #list-input {
-            flex: 1;
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: #f8fafc;
-            padding: .7em .9em;
-            font-family: var(--font-mono);
-            font-size: .95rem;
-        }
-        #list-input:focus {
-            outline: none;
-            border-color: var(--blue);
-        }
-        #list-input::placeholder {
-            color: #64748b;
-        }
-        .terminal-list {
-            list-style: none;
-            margin: 0;
-            padding: 10px 0;
-            max-height: 420px;
-            overflow-y: auto;
-        }
-        .terminal-list li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
-            border-bottom: 1px dashed #263449;
-            animation: itemIn .25s ease;
-        }
-        @keyframes itemIn {
-            from {
-                opacity: 0;
-                transform: translateX(-8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        .line-no {
-            color: #475569;
-            font-size: .8rem;
-            width: 24px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-        .item-check {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            border: 2px solid #64748b;
-            border-radius: 5px;
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: transparent;
-            transition: all .15s ease;
-        }
-        .item-check.done {
-            background: var(--green);
-            border-color: var(--green);
-            color: #0f172a;
-        }
-        .item-text {
-            flex: 1;
-            word-break: break-word;
-            font-size: .95rem;
-        }
-        .item-text.done {
-            text-decoration: line-through;
-            color: #64748b;
-        }
-        .item-delete {
-            background: none;
-            border: none;
-            color: #64748b;
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 6px;
-            line-height: 0;
-            transition: color .15s ease;
-        }
-        .item-delete:hover {
-            color: #f87171;
-        }
-        .empty-state {
-            display: none;
-            padding: 30px 20px;
-            text-align: center;
-            color: #64748b;
-            font-size: .9rem;
-        }
-        .terminal.is-empty .empty-state {
-            display: block;
-        }
-        .terminal-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 14px 20px;
-            background: #1e293b;
-            font-size: .85rem;
-        }
-        .item-count {
-            color: #94a3b8;
-        }
-        .terminal-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .terminal-actions .btn-text {
-            color: #94a3b8;
-        }
-        .terminal-actions .btn-text:hover {
-            color: #fff;
-        }
-        /* responsive */
-        @media (max-width:900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-art {
-                order: -1;
-            }
-        }
-        @media (max-width:640px) {
-            .section {
-                padding: 64px 0;
-            }
-            .terminal-footer {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .hero-actions .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .terminal-template-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .template-label {
-                white-space: normal;
-            }
-        }
-        .skip-link {
-            position: absolute;
-            left: -999px;
-            top: 0;
-            background: var(--ink);
-            color: #fff;
-            padding: .75em 1.25em;
-            z-index: 1000;
-            border-radius: 0 0 8px 0;
-        }
-        .skip-link:focus {
-            left: 0;
-        }
-        :focus-visible {
-            outline: 3px solid var(--blue);
-            outline-offset: 2px;
-        }
-        .hidden-until-ready {
-            opacity: 0;
-            transition: opacity .3s ease;
-        }
-        .hidden-until-ready.ready {
-            opacity: 1;
-        }
-    </style>
+<!-- Schema.org: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Make A List Online",
+  "url": "https://makealist.github.io/",
+  "description": "A free online list maker for creating to do lists, grocery lists, checklists and shopping lists, with the option to save any list as a stylish PDF.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Online to do list maker",
+    "Grocery list maker",
+    "Checklist maker",
+    "Online shopping list maker",
+    "Save list as a stylish PDF",
+    "Multiple list templates"
+  ]
+}
+</script>
 
-    <!-- Schema.org: WebApplication -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Make A List Online",
-            "url": "https://makealist.github.io/",
-            "applicationCategory": "Utility",
-            "operatingSystem": "Any",
-            "description": "A free online list maker for building to do lists, checklists, grocery lists and shopping lists directly in your browser. No sign-up required.",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            },
-            "featureList": [
-                "Make a list online instantly",
-                "Auto-saving to do list maker",
-                "Grocery and shopping list maker",
-                "Checklist maker with export",
-                "Ready-made templates for every list type",
-                "Save any list as a PDF or text file",
-                "Mobile compatible list website"
-            ]
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Make A List Online",
-            "url": "https://makealist.github.io/",
-            "logo": "https://makealist.github.io/favicon.svg"
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [{
-                "@type": "Question",
-                "name": "Is this list maker really free?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Make A List Online is completely free to use. There are no premium tiers, no paywalls, and no limits on how many lists you create."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Do I need to create an account to make a list online?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No account, no email, no password. Open the page and start typing. Your list lives in your browser, ready whenever you are."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Will my list save if I close the tab?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Every item you add is saved automatically to your browser's local storage, so your list is still there the next time you open the page on the same device."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Can I use this as a grocery list maker on my phone?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Absolutely. The whole site is built mobile-first, so the grocery list maker and every other tool work the same on a phone, tablet, or laptop."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Can I export or print my checklist?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Use the download button in the list maker to save your checklist as a plain text file, which you can print or share however you like."
-                }
-            }, {
-                "@type": "Question",
-                "name": "What's the difference between a to do list maker and a checklist maker?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Not much, technically — a to do list tracks tasks over time, while a checklist is usually a one-time run-through, like packing a bag. This tool works as both."
-                }
-            }, {
-                "@type": "Question",
-                "name": "Can I keep more than one list going at once?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The tool holds one active list at a time, named however you like. Finish or export one list, clear it, and start the next, keeping each list focused instead of one long tangled document."
-                }
-            }]
-        }
-    </script>
+<!-- Schema.org: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://makealist.github.io/"
+    }
+  ]
+}
+</script>
+
+<!-- Schema.org: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Make A List Online really free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Make A List Online is a free list maker. You can create a list online, add and check off items, and save your list as a PDF without creating an account or paying anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kinds of lists can I make with this list maker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can make a to do list, grocery list, checklist, online shopping list, travel packing list, study list, wedding planning list, work list or a fully custom list. The list maker adapts to any list you want to create."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I save my list as a PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After making a list online, choose one of the stylish PDF templates — Minimal, Notebook, Color Cards or Mono Console — and click Save as PDF to download a print-ready copy of your list."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to sign up to create a list online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No sign-up is required to use the list maker. Open the homepage, start typing your list, and export it whenever you're ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this online to do list maker mobile friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The list maker is fully mobile compatible, so you can make a grocery list, checklist or to do list from your phone, tablet or desktop."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-    <a class="skip-link" href="#list-maker">Skip to list maker</a>
+<a href="#list-maker" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:0;">Skip to list maker</a>
 
-    <div id="header-root" class="hidden-until-ready"></div>
+<div id="site-header-root"></div>
 
-    <main id="main-content" class="hidden-until-ready">
+<main>
 
-        <!-- ============ HERO ============ -->
-        <section id="hero" class="section hero" aria-label="Introduction">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <p class="eyebrow">// no sign-up . no clutter . just lists</p>
-                    <h1 class="reveal">Make A List Online — <span class="gradient-text">Fast, Free</span>, and Ridiculously Simple</h1>
-                    <p class="lead reveal">
-                        Make A List Online is a free <strong>list maker</strong> built for people who think in tasks, not spreadsheets.
-                        Whether you need to <strong>make a list online</strong> for tonight's grocery run, <strong>create a list</strong> for a
-                        big project launch, or just want a simple <strong>to do list maker</strong> that doesn't ask for an account, this is
-                        the place to build it. Type an item, hit enter, and watch your <strong>list online</strong> update instantly — no
-                        downloads, no logins, no ads getting in the way.
-                    </p>
-                    <p class="lead reveal">
-                        This is what <strong>making a list</strong> should always have felt like: quick, clean, and entirely yours. Use it as a
-                        <strong>checklist maker</strong> for packing before a trip, an <strong>online shopping list maker</strong> for the
-                        weekend haul, or just a scratchpad for the ten things rattling around your head right now. It's your list, running
-                        in your browser, built to disappear into the background so the only thing you notice is how little friction
-                        is left between an idea and a finished, checked-off line.
-                    </p>
-                    <div class="hero-actions reveal">
-                        <a href="#list-maker" class="btn btn-primary">Start Your List</a>
-                        <a href="#how-it-works" class="btn btn-ghost">See How It Works</a>
-                    </div>
-                </div>
-                <div class="hero-art" aria-hidden="true">
-                    <svg viewBox="0 0 420 420" class="floaty">
-                        <rect x="60" y="40" width="300" height="340" rx="18" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
-                        <rect x="60" y="40" width="300" height="52" rx="18" fill="#2563eb"/>
-                        <circle cx="88" cy="66" r="7" fill="#ef4444"/>
-                        <circle cx="110" cy="66" r="7" fill="#eab308"/>
-                        <circle cx="132" cy="66" r="7" fill="#16a34a"/>
-                        <g font-family="monospace" font-size="16" fill="#0f172a">
-                            <rect x="84" y="118" width="18" height="18" rx="4" fill="none" stroke="#16a34a" stroke-width="3"/>
-                            <path d="M87 127l4 4 8-8" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                            <line x1="114" y1="127" x2="320" y2="127" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                            <rect x="84" y="158" width="18" height="18" rx="4" fill="none" stroke="#9333ea" stroke-width="3"/>
-                            <line x1="114" y1="167" x2="300" y2="167" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                            <rect x="84" y="198" width="18" height="18" rx="4" fill="none" stroke="#f97316" stroke-width="3"/>
-                            <path d="M87 207l4 4 8-8" stroke="#f97316" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                            <line x1="114" y1="207" x2="330" y2="207" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                            <rect x="84" y="238" width="18" height="18" rx="4" fill="none" stroke="#ec4899" stroke-width="3"/>
-                            <line x1="114" y1="247" x2="280" y2="247" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                        </g>
-                        <rect x="84" y="286" width="252" height="40" rx="8" fill="#f8fafc" stroke="#0f172a" stroke-width="2" stroke-dasharray="6 6"/>
-                        <text x="98" y="311" font-family="monospace" font-size="15" fill="#94a3b8">+ add item...</text>
-                        <rect x="84" y="286" width="2" height="24" fill="#2563eb" class="blink"/>
-                    </svg>
-                </div>
+  <!-- ============================== HERO / LIST MAKER ============================== -->
+  <section class="hero" id="list-maker">
+    <span class="hero-blob blob-1" aria-hidden="true"></span>
+    <span class="hero-blob blob-2" aria-hidden="true"></span>
+    <span class="hero-blob blob-3" aria-hidden="true"></span>
+
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Free list maker · no sign-up</span>
+        <h1>Make a list online in the time it takes to think of item&nbsp;one.</h1>
+        <p class="hero-lead">Make A List Online is a fast, colorful list maker for building a to do list, grocery list, checklist or shopping list — right in your browser. Type it, check it off, and save your list as a stylish PDF when it's ready.</p>
+
+        <div class="hero-kicker-list" aria-hidden="true">
+          <span>[ ] to_do_list.txt</span>
+          <span>[ ] grocery_list.txt</span>
+          <span>[x] checklist.txt</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#new-item-input" class="btn btn-gradient" id="heroStartBtn">Start Making a List</a>
+          <a href="#list-types" class="btn btn-outline">See All List Types</a>
+        </div>
+
+        <div class="hero-trust">
+          <span><strong>9+</strong> list types built in</span>
+          <span><strong>4</strong> stylish PDF templates</span>
+          <span><strong>0</strong> sign-up required</span>
+        </div>
+      </div>
+
+      <div class="editor" role="region" aria-label="Interactive list maker">
+        <div class="editor-titlebar">
+          <span class="dot dot-1"></span><span class="dot dot-2"></span><span class="dot dot-3"></span>
+          <span>list-maker.app</span>
+        </div>
+
+        <div class="editor-tabs" id="editorTabs" role="tablist" aria-label="List type"></div>
+
+        <div class="editor-body">
+          <div class="list-title-row">
+            <input type="text" id="listTitleInput" aria-label="List title" maxlength="60">
+          </div>
+
+          <ul class="list-lines" id="listLines" aria-label="List items"></ul>
+
+          <div class="add-line-row">
+            <input type="text" id="newItemInput" placeholder="Add an item and press Enter…" aria-label="New list item">
+            <button type="button" id="addItemBtn" aria-label="Add item">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <div class="editor-footer">
+            <div class="template-picker">
+              <span>pdf theme:</span>
+              <button class="swatch" data-tpl="minimal" aria-label="Minimal template"></button>
+              <button class="swatch" data-tpl="notebook" aria-label="Notebook template"></button>
+              <button class="swatch is-active" data-tpl="cards" aria-label="Color Cards template"></button>
+              <button class="swatch" data-tpl="mono" aria-label="Mono Console template"></button>
             </div>
-        </section>
-
-        <!-- ============ LIST MAKER TOOL ============ -->
-        <section id="list-maker" class="section tool-section" aria-label="List maker tool">
-            <div class="container">
-                <p class="eyebrow">// list-maker.app</p>
-                <h2 class="reveal">Your List Maker, Ready to Run</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    This is the actual <strong>list maker</strong> — not a preview, not a demo. Add an item below and it becomes part
-                    of your <strong>list online</strong> immediately, saved right in this browser so it's here when you come back.
-                    Check items off as you finish them, delete the ones you don't need, and clear the whole board when the list's
-                    done its job. Every <strong>to do list maker</strong> should be this direct: type, enter, done. Use it to
-                    <strong>create a list</strong> for anything — errands, ideas, ingredients, or an actual to-do list for tomorrow
-                    morning. Pick a ready-made template below to start with common items already filled in, or leave it blank and
-                    build the whole thing yourself.
-                </p>
-
-                <div class="terminal reveal" role="group" aria-label="Interactive list maker">
-                    <div class="terminal-bar">
-                        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-                        <input id="list-title" class="terminal-filename" value="my-list.txt" aria-label="List name" maxlength="40">
-                    </div>
-
-                    <div class="terminal-template-row">
-                        <label for="list-type" class="template-label">Start from a template</label>
-                        <select id="list-type" class="template-select" aria-label="Choose a list type template">
-                            <option value="blank" selected>Blank list</option>
-                            <option value="grocery">Grocery List</option>
-                            <option value="todo">To-Do List</option>
-                            <option value="checklist">Checklist</option>
-                            <option value="packing">Packing List</option>
-                            <option value="shopping">Shopping List</option>
-                            <option value="study">Study List</option>
-                            <option value="habit">Habit Tracker</option>
-                            <option value="project">Project Tasks</option>
-                            <option value="bucket">Bucket List</option>
-                            <option value="reading">Reading List</option>
-                        </select>
-                    </div>
-
-                    <form id="list-form" class="terminal-input-row">
-                        <span class="prompt" aria-hidden="true">$</span>
-                        <input id="list-input" type="text" autocomplete="off" placeholder="Type an item and press enter…" aria-label="Add a list item" maxlength="140">
-                        <button type="submit" class="btn btn-small btn-primary">Add</button>
-                    </form>
-
-                    <ul id="list-items" class="terminal-list" aria-live="polite"></ul>
-
-                    <p id="empty-state" class="empty-state">// this list is empty — add your first item above</p>
-
-                    <div class="terminal-footer">
-                        <span id="item-count" class="item-count">0 items</span>
-                        <div class="terminal-actions">
-                            <button id="clear-completed" type="button" class="btn btn-text">Clear done</button>
-                            <button id="clear-all" type="button" class="btn btn-text">Clear all</button>
-                            <button id="download-list" type="button" class="btn btn-text">Download .txt</button>
-                            <button id="download-pdf" type="button" class="btn btn-text">Save as PDF</button>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="reveal" style="max-width:70ch; margin-top:1.6em;">
-                    Rename the file at the top of the terminal to whatever suits the list — <em>groceries.txt</em>,
-                    <em>packing.txt</em>, <em>sprint.txt</em> — and it'll download under that name later, whether you save it as
-                    a plain text file or as a formatted <strong>PDF</strong> ready to print. Everything you type stays in this
-                    browser only; nothing is sent anywhere or shared with anyone else, which is part of what keeps a simple
-                    <strong>list maker</strong> simple.
-                </p>
+            <div class="editor-actions">
+              <button type="button" class="btn-ghost-dark" id="clearDoneBtn">Clear done</button>
+              <button type="button" class="btn-pdf" id="saveAsPdfBtn">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Save as PDF
+              </button>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ============ FEATURES ============ -->
-        <section id="features" class="section" aria-label="Features">
-            <div class="container">
-                <p class="eyebrow">// features.json</p>
-                <h2 class="reveal">Built Like Software, Not a Sticky Note</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    Most list apps bury a simple idea under logins and clutter. This one is built the way a developer would build a
-                    tool for daily use: fast to open, predictable to run, and gone the moment you don't need it. Every feature below
-                    exists because it makes the core job — helping you <strong>make a list</strong> and get through it — a little
-                    faster, not because it looks good on a marketing page.
-                </p>
+  <!-- ============================== LIST TYPES ============================== -->
+  <section class="section section--tinted" id="list-types">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Every list, one list maker</span>
+        <h2>Show me <span class="gradient-text">every type of list</span> I can make</h2>
+        <p>Make A List Online isn't a single-purpose to do list maker — it's a general-purpose list maker built to handle any list you can think of. Pick a type below to load it straight into the editor above, or start from a blank custom list.</p>
+      </div>
 
-                <div class="grid grid-3">
-                    <article class="card reveal">
-                        <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><path d="M26 4 8 28h12l-2 16 18-24H24l2-16z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-                        <h3>Instant Add</h3>
-                        <p>Type an item, press enter, and it's on the list. No modal windows, no "save" button to hunt for — the fastest way to make a list online is to just start typing.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-green" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 8v8h16V8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-                        <h3>Saves Automatically</h3>
-                        <p>Every checked box and typed line is stored locally the instant you make it. Refresh the page, close the tab, come back tomorrow — your list online is exactly where you left it.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-purple" viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="4" width="20" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="24" y1="36" x2="24" y2="36.1" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-                        <h3>Works Everywhere</h3>
-                        <p>This list website is built mobile-first and scales up cleanly to desktop. Make a list on your phone in line at the store, then keep editing it from a laptop later.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-orange" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6a10 10 0 0 0-6 18v6h12v-6a10 10 0 0 0-6-18z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><line x1="20" y1="38" x2="28" y2="38" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-                        <h3>No Sign-Up Required</h3>
-                        <p>There's no account, no email confirmation, and nothing to remember. Open the page and create a list — that's the entire onboarding flow.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-pink" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v24m0 0-9-9m9 9 9-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 34v6h28v-6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        <h3>Export &amp; Print</h3>
-                        <p>Download any checklist as a plain text file or a formatted PDF with one click, then print it, paste it into an email, or hand it to someone else entirely.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-green" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="32" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><line x1="16" y1="16" x2="32" y2="16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="24" x2="32" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="32" x2="26" y2="32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-                        <h3>Ready-Made Templates</h3>
-                        <p>Pick a list type — grocery, to-do, packing, and more — from the dropdown in the list maker, and it pre-fills starter items so you're editing instead of staring at a blank page.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="14" width="40" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><line x1="12" y1="22" x2="12" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="18" y1="22" x2="18" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="24" y1="22" x2="24" y2="22.1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="14" y1="30" x2="34" y2="30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-                        <h3>Keyboard First</h3>
-                        <p>Built for people who'd rather type than click. Add items, submit the form, and move through your list without ever reaching for the mouse.</p>
-                    </article>
-                </div>
+      <div class="types-grid reveal-stagger">
+        <button class="type-card" data-load-type="todo">
+          <span class="type-icon c-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>To Do List Maker</h3>
+          <p>Turn a scattered brain into a clean, checkable to do list for work, school or home.</p>
+        </button>
 
-                <p class="reveal" style="max-width:70ch; margin-top:2em;">
-                    None of these features require a tutorial. That's deliberate — a <strong>list maker</strong> that needs
-                    onboarding has already failed at its one job. Open the tool, and every feature above is simply there,
-                    working quietly in the background while you focus on the list itself.
-                </p>
-            </div>
-        </section>
+        <button class="type-card" data-load-type="grocery">
+          <span class="type-icon c-lime"><svg viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.3" fill="currentColor"/><circle cx="17" cy="21" r="1.3" fill="currentColor"/></svg></span>
+          <h3>Grocery List Maker</h3>
+          <p>Build a weekly grocery list, check items off in the aisle, and never forget the milk again.</p>
+        </button>
 
-        <!-- ============ HOW IT WORKS ============ -->
-        <section id="how-it-works" class="section section-tint" aria-label="How it works">
-            <div class="container">
-                <p class="eyebrow">// run make-a-list.sh</p>
-                <h2 class="reveal">How To Make A List Online in Four Steps</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    There's no learning curve here — if you've ever typed a message on a phone, you already know how to use this
-                    list maker. Here's the whole process, start to finish.
-                </p>
+        <button class="type-card" data-load-type="checklist">
+          <span class="type-icon c-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="2"/><path d="M7 10l2 2 4-4M7 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Checklist Maker</h3>
+          <p>A dedicated checklist maker for packing, launches, onboarding or any step-by-step process.</p>
+        </button>
 
-                <ol class="steps">
-                    <li class="step reveal">
-                        <span class="step-num">01</span>
-                        <div>
-                            <h3>Open the list maker</h3>
-                            <p>Scroll up (or click "Start Your List") to land right in the tool. There's nothing to install, nothing to configure, and no tutorial screen standing between you and the input box.</p>
-                        </div>
-                    </li>
-                    <li class="step reveal">
-                        <span class="step-num">02</span>
-                        <div>
-                            <h3>Type your first item and press enter</h3>
-                            <p>Each entry becomes its own line, numbered like a real document. Keep going until everything in your head is on the page — there's no limit to how long a single list can run.</p>
-                        </div>
-                    </li>
-                    <li class="step reveal">
-                        <span class="step-num">03</span>
-                        <div>
-                            <h3>Check things off as you finish</h3>
-                            <p>A single click marks an item done and strikes it through, so you can always see progress at a glance without scanning the whole list twice to work out what's left.</p>
-                        </div>
-                    </li>
-                    <li class="step reveal">
-                        <span class="step-num">04</span>
-                        <div>
-                            <h3>Export, print, or just keep building</h3>
-                            <p>Download your finished checklist as a text file, or leave it saved in the browser and add to it whenever something new comes up — the list is exactly as permanent or as disposable as you need it to be.</p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
+        <button class="type-card" data-load-type="shopping">
+          <span class="type-icon c-pink"><svg viewBox="0 0 24 24" fill="none"><path d="M6 7h12l-1 12H7L6 7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>Online Shopping List Maker</h3>
+          <p>Track everything you plan to buy — in stores or online — in one shareable shopping list.</p>
+        </button>
 
-        <!-- ============ USE CASES ============ -->
-        <section id="use-cases" class="section" aria-label="Use cases">
-            <div class="container">
-                <p class="eyebrow">// use-cases.md</p>
-                <h2 class="reveal">One List Maker, Every Kind of List</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    A good list maker shouldn't care what the list is for. The same clean input box works whether you're
-                    planning a week of meals, organizing a sprint, or just trying to remember what's actually in the fridge.
-                    Below are the most common ways people put this tool to work.
-                </p>
+        <button class="type-card" data-load-type="travel">
+          <span class="type-icon c-amber"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19l7-14 7 14M7.5 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Travel Packing List</h3>
+          <p>Make a packing list for every trip so nothing gets left behind on the way to the airport.</p>
+        </button>
 
-                <div class="grid grid-2">
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-green" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 14h4l4 22h20l4-16H16" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="42" r="2.5" fill="currentColor"/><circle cx="34" cy="42" r="2.5" fill="currentColor"/></svg>
-                        <h3>Grocery List Maker</h3>
-                        <p>Skip the crumpled paper on the counter. Build a <strong>grocery list maker</strong> style checklist right before you leave, group items by aisle, and check them off with one tap as they land in the cart. It doubles as an <strong>online shopping list maker</strong> for anything from a weekly haul to a big holiday order.</p>
-                    </article>
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M15 24l6 6 12-12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        <h3>To Do List Maker</h3>
-                        <p>Use it as a daily <strong>to do list maker</strong> for work or a personal <strong>online to do list maker</strong> for errands, calls, and small tasks that pile up fast. Add items the moment they come to mind, and let the list carry the mental load instead of you.</p>
-                    </article>
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-purple" viewBox="0 0 48 48" aria-hidden="true"><rect x="12" y="6" width="24" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><rect x="18" y="4" width="12" height="6" rx="2" fill="currentColor"/><line x1="18" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="18" y1="27" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="18" y1="34" x2="26" y2="34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-                        <h3>Checklist Maker</h3>
-                        <p>Some tasks only happen once — closing out a project, prepping for an inspection, running through a launch. As a <strong>checklist maker</strong>, this tool is built for exactly that: a clean run-through you can build fast and check <strong>checklist online</strong> without hunting for a template first.</p>
-                    </article>
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-orange" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 18h28v20a3 3 0 0 1-3 3H13a3 3 0 0 1-3-3z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M16 18v-4a8 8 0 0 1 16 0v4" fill="none" stroke="currentColor" stroke-width="3"/></svg>
-                        <h3>Packing List</h3>
-                        <p>Before any trip, make a list of everything that needs to land in the bag. Sort by category, tick items off as you pack, and never again wonder if you actually grabbed the charger.</p>
-                    </article>
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-pink" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 14a4 4 0 0 1 4-4h10l4 4h14a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-                        <h3>Project &amp; Task List</h3>
-                        <p>Break a project into a straightforward task list the same way you'd break a build into commits. Add sub-tasks as they surface, and clear them the moment they ship. It works just as well for a solo side project as it does for coordinating a small team's weekly priorities.</p>
-                    </article>
-                    <article class="card card-outline reveal">
-                        <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6 6 16v16l18 10 18-10V16z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M6 16l18 10 18-10M24 26v16" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-                        <h3>Study &amp; Habit List</h3>
-                        <p>Turn a syllabus into a topic-by-topic checklist, or track a daily habit as a recurring line you check off morning after morning. Small, repeatable lists build real momentum.</p>
-                    </article>
-                </div>
+        <div class="type-card" style="cursor:default;">
+          <span class="type-icon c-blue"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <h3>Study List</h3>
+          <p>Break assignments, readings and revision topics into a manageable study checklist.</p>
+        </div>
 
-                <p class="reveal" style="max-width:70ch; margin-top:2em;">
-                    None of these are separate products — they're all the same list maker, just pointed at a different job.
-                    That's the advantage of a general-purpose <strong>list website</strong> over a dozen single-purpose apps:
-                    one place to open, one interface to remember, and every list you make behaves exactly the same way.
-                </p>
-            </div>
-        </section>
+        <div class="type-card" style="cursor:default;">
+          <span class="type-icon c-violet"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2.4 5.5 6 5.5c2 0 3.4 1.1 4 2.2.6-1.1 2-2.2 4-2.2 3.6 0 5.3 3.5 3.5 7C19 16.65 12 21 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <h3>Wedding Planning List</h3>
+          <p>Vendors, guests, timelines — plan a wedding with one long, satisfying checklist.</p>
+        </div>
 
-        <!-- ============ WHY ONLINE ============ -->
-        <section id="why-online" class="section section-tint" aria-label="Why go online">
-            <div class="container why-grid">
-                <div>
-                    <p class="eyebrow">// why-online.txt</p>
-                    <h2 class="reveal">Why an Online List Beats a Paper One</h2>
-                    <p class="reveal">
-                        Paper works right up until you lose it, spill coffee on it, or leave it on the kitchen counter while you're
-                        standing in aisle six. A <strong>list online</strong> doesn't have that problem. It's in your pocket wherever
-                        your phone is, it can't smudge, and it doesn't run out of space halfway down the page.
-                    </p>
-                    <p class="reveal">
-                        There's also the matter of editing. Crossing something out on paper leaves a mess; reordering means starting
-                        over. On this <strong>list website</strong>, adding, checking, and deleting are all instant. <strong>Making a
-                        list</strong> stops being a small chore and becomes something you can do in the ten seconds you have between
-                        one task and the next.
-                    </p>
-                    <p class="reveal">
-                        And because everything runs in the browser, there's nothing to install and nothing tying your list to one
-                        device only for the wrong reasons — you can <strong>create a list online</strong> at your desk and glance at
-                        it again from your phone later, so long as you're on the same browser profile. No syncing accounts, no
-                        settings to dig through, just a list that behaves the way a tool should.
-                    </p>
-                    <p class="reveal">
-                        There's a quieter benefit too: a <strong>list online</strong> scales with the task. A short grocery run might
-                        only need five lines; a full house move might need fifty. Paper forces you to guess the size of the page
-                        before you've even started writing. This tool just keeps going — add a sixth item or a sixtieth, and the
-                        <strong>list maker</strong> handles it the same way, scrolling instead of running out of room.
-                    </p>
-                    <p class="reveal">
-                        It's also simply easier to keep tidy. Delete a finished item and the rest of the list shifts up automatically
-                        instead of leaving a gap. Rename the list when its purpose changes. None of that requires a fresh sheet of
-                        paper or a new page in a notebook — it's just <strong>making a list</strong> the way software was always
-                        supposed to make repetitive little jobs easier.
-                    </p>
-                </div>
-                <svg class="why-art" viewBox="0 0 300 300" aria-hidden="true">
-                    <rect x="20" y="20" width="110" height="150" rx="10" fill="none" stroke="#0f172a" stroke-width="3" stroke-dasharray="7 7" opacity=".55"/>
-                    <path d="M40 60h70M40 80h50M40 100h60" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".35"/>
-                    <path d="M160 60l40 40-40 40" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <g>
-                        <rect x="170" y="130" width="110" height="150" rx="12" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
-                        <rect x="185" y="150" width="16" height="16" rx="4" fill="none" stroke="#16a34a" stroke-width="3"/>
-                        <path d="M188 158l3 3 6-6" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
-                        <line x1="210" y1="158" x2="260" y2="158" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                        <rect x="185" y="180" width="16" height="16" rx="4" fill="none" stroke="#9333ea" stroke-width="3"/>
-                        <line x1="210" y1="188" x2="255" y2="188" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                        <rect x="185" y="210" width="16" height="16" rx="4" fill="none" stroke="#f97316" stroke-width="3"/>
-                        <path d="M188 218l3 3 6-6" stroke="#f97316" stroke-width="3" fill="none" stroke-linecap="round"/>
-                        <line x1="210" y1="218" x2="248" y2="218" stroke="#0f172a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-                    </g>
-                </svg>
-            </div>
-        </section>
+        <div class="type-card" style="cursor:default;">
+          <span class="type-icon c-teal"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Work &amp; Project List</h3>
+          <p>Break a project into tasks and turn a messy backlog into an ordered work list.</p>
+        </div>
 
-        <!-- ============ LIST TYPES ============ -->
-        <section id="list-types" class="section" aria-label="List types">
-            <div class="container">
-                <p class="eyebrow">// templates.yaml</p>
-                <h2 class="reveal">Start Any List You Need</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    There are no locked templates here, no "upgrade to unlock" screens. Every list type below is really just the
-                    same fast input box, pre-loaded with a starter set of common items — tap any one to send it straight into the
-                    list maker above, ready to edit. These are simply the types people reach for most when they open the tool to
-                    <strong>create a list online</strong>, listed here so search engines and people scanning this page can quickly
-                    confirm this list maker covers what they need.
-                </p>
-                <div class="chip-row reveal" role="group" aria-label="Load a list template">
-                    <button type="button" class="chip" data-template="grocery">Grocery List</button>
-                    <button type="button" class="chip" data-template="todo">To-Do List</button>
-                    <button type="button" class="chip" data-template="packing">Packing List</button>
-                    <button type="button" class="chip" data-template="checklist">Checklist</button>
-                    <button type="button" class="chip" data-template="shopping">Shopping List</button>
-                    <button type="button" class="chip" data-template="study">Study List</button>
-                    <button type="button" class="chip" data-template="habit">Habit Tracker</button>
-                    <button type="button" class="chip" data-template="project">Project Tasks</button>
-                    <button type="button" class="chip" data-template="bucket">Bucket List</button>
-                    <button type="button" class="chip" data-template="reading">Reading List</button>
-                </div>
-                <p class="reveal" style="max-width:70ch">
-                    Naming your list is optional — the field at the top of the terminal just holds whatever title makes sense to
-                    you, like <em>groceries.txt</em> or <em>sprint-12.txt</em>. Rename it any time; nothing about the list itself
-                    changes, it's just a label to help you find the right one when you have more than one going.
-                </p>
-                <p class="reveal" style="max-width:70ch">
-                    This flexibility is the whole point of building one solid <strong>list maker</strong> instead of ten separate
-                    templated apps. A grocery run and a work sprint don't need different software — they need the same fast,
-                    reliable place to write things down and check them off. Templates are useful as a starting point, but they
-                    shouldn't be a requirement just to <strong>create a list online</strong> for something the templates never
-                    anticipated.
-                </p>
-                <p class="reveal" style="max-width:70ch">
-                    If your list doesn't fit neatly into any of the categories above, that's fine too — the input box doesn't
-                    know or care what category an item belongs to. Type it, check it, delete it. The tool adapts to whatever
-                    you're organizing rather than asking you to adapt to it.
-                </p>
-            </div>
-        </section>
+        <button class="type-card" data-load-type="custom">
+          <span class="type-icon c-pink"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Custom List</h3>
+          <p>No template fits? Start a totally blank custom list and make it whatever you need.</p>
+        </button>
+      </div>
+    </div>
+  </section>
 
-        <!-- ============ TIPS ============ -->
-        <section id="tips" class="section" aria-label="Tips for making a list">
-            <div class="container">
-                <p class="eyebrow">// tips.md</p>
-                <h2 class="reveal">Tips For Making A List You'll Actually Use</h2>
-                <p class="lead reveal" style="max-width:70ch">
-                    Any list maker can hold text. The difference between a list that gets finished and one that gets abandoned
-                    halfway usually comes down to a few small habits. Here's what tends to work.
-                </p>
+  <!-- ============================== HOW IT WORKS ============================== -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Create a list online in four quick steps</h2>
+        <p>Making a list shouldn't require a manual. Here's the entire workflow, from blank page to finished, downloadable list.</p>
+      </div>
 
-                <div class="grid grid-2">
-                    <article class="card reveal">
-                        <svg class="icon icon-blue" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8v10l8 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3"/></svg>
-                        <h3>Write it down the moment you think of it</h3>
-                        <p>The whole point of an <strong>online to do list maker</strong> is that it's always within reach. Add an item the second it crosses your mind instead of trying to hold it in memory until later — that's how things get forgotten in the first place.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-green" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 24h32M24 8v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-                        <h3>Keep one list per purpose</h3>
-                        <p>A single sprawling list mixing groceries, work tasks, and packing items gets confusing fast. Run a separate <strong>grocery list maker</strong> session for the store and a different <strong>to do list maker</strong> session for work — name each one so you can tell them apart at a glance.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-orange" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 24l8 8 16-16" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        <h3>Check things off as you go, not after</h3>
-                        <p>Marking an item done the instant it's finished keeps the <strong>checklist online</strong> honest and gives an accurate read on what's actually left, rather than a guess made at the end of the day.</p>
-                    </article>
-                    <article class="card reveal">
-                        <svg class="icon icon-purple" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38V16a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v22l-14-8z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
-                        <h3>Clear finished lists instead of hoarding them</h3>
-                        <p>Once a <strong>checklist maker</strong> session has done its job, clear it. Keeping every completed list around just adds noise — the goal of an <strong>online list</strong> is speed, not an archive of everything you've ever needed to do.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+      <div class="steps reveal-stagger">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <h3>Pick a list type</h3>
+          <p>Choose a to do list, grocery list, checklist or any other list type — or start from scratch with a custom list.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <h3>Add your items</h3>
+          <p>Type each line into the online list maker and press Enter. Every item gets its own checkbox automatically.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <h3>Check things off</h3>
+          <p>Tap a checkbox as you complete each item. Done items get a strikethrough so progress is easy to see at a glance.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">04</span>
+          <h3>Save as PDF</h3>
+          <p>Pick a stylish template and export your finished list as a PDF you can print, share or keep for later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ============ FAQ ============ -->
-        <section id="faq" class="section section-tint" aria-label="Frequently asked questions">
-            <div class="container">
-                <p class="eyebrow">// faq.log</p>
-                <h2 class="reveal">Common Questions About Making A List Online</h2>
+  <!-- ============================== FEATURES ============================== -->
+  <section class="section section--tinted" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Built for real lists</span>
+        <h2>A list maker that behaves like software, not a form</h2>
+        <p>Every feature here exists because making a list online should feel quick, tactile and a little bit fun — not like filling out a spreadsheet.</p>
+      </div>
 
-                <div class="faq-list">
-                    <details class="faq-item reveal" open>
-                        <summary>Is this list maker really free?</summary>
-                        <p>Yes. Make A List Online is completely free to use. There are no premium tiers, no paywalls, and no limits on how many lists you create.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>Do I need to create an account to make a list online?</summary>
-                        <p>No account, no email, no password. Open the page and start typing. Your list lives in your browser, ready whenever you are.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>Will my list save if I close the tab?</summary>
-                        <p>Yes. Every item you add is saved automatically to your browser's local storage, so your list is still there the next time you open the page on the same device.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>Can I use this as a grocery list maker on my phone?</summary>
-                        <p>Absolutely. The whole site is built mobile-first, so the grocery list maker and every other tool work the same on a phone, tablet, or laptop.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>Can I export or print my checklist?</summary>
-                        <p>Yes. Use the download button in the list maker to save your checklist as a plain text file, which you can print or share however you like.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>What's the difference between a to do list maker and a checklist maker?</summary>
-                        <p>Not much, technically — a to do list tracks tasks over time, while a checklist is usually a one-time run-through, like packing a bag. This tool works as both.</p>
-                    </details>
-                    <details class="faq-item reveal">
-                        <summary>Can I keep more than one list going at once?</summary>
-                        <p>The tool holds one active list at a time, named however you like in the title field at the top. Finish or export one list, clear it, and start the next — a simple rhythm that keeps each list online focused instead of turning into one giant, tangled document.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
+      <div class="feature-row reveal">
+        <div class="feature-copy">
+          <h3>One online list maker, every list type</h3>
+          <p>Most tools force you to pick a single format. This one online to do list maker doubles as a grocery list maker, checklist maker and general-purpose list maker — so you only need one tab open, no matter what you're organizing today.</p>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Switch between list types without losing your place</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Editable titles for every list you create</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> One-tap "clear done" to tidy up finished items</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <svg viewBox="0 0 320 220" fill="none">
+            <rect x="10" y="10" width="300" height="200" rx="18" fill="#f1eefc"/>
+            <rect x="34" y="40" width="180" height="16" rx="8" fill="#7c3aed"/>
+            <rect x="34" y="76" width="252" height="14" rx="7" fill="#ffffff"/>
+            <rect x="34" y="104" width="252" height="14" rx="7" fill="#ffffff"/>
+            <rect x="34" y="132" width="200" height="14" rx="7" fill="#ffffff"/>
+            <circle cx="270" cy="83" r="7" fill="#65c93a"/>
+            <circle cx="270" cy="111" r="7" fill="#f43f5e"/>
+            <circle cx="270" cy="139" r="7" fill="#06b6d4"/>
+          </svg>
+        </div>
+      </div>
 
-        <!-- ============ CTA ============ -->
-        <section id="cta" class="section cta-section" aria-label="Call to action">
-            <div class="container cta-inner">
-                <p class="eyebrow">// final commit</p>
-                <h2 class="reveal">Ready To Make Your List?</h2>
-                <p class="lead reveal">
-                    Nothing to sign up for, nothing to install, nothing standing between you and an empty input box. Whatever
-                    you need to remember — groceries, tasks, packing, a project — this is where you <strong>create a list</strong>
-                    and get it out of your head and onto the page.
-                </p>
-                <p class="lead reveal">
-                    Bookmark this page as your go-to <strong>list website</strong>, and the next time something needs remembering
-                    you'll already know exactly where to <strong>make a list online</strong> in under ten seconds.
-                </p>
-                <a href="#list-maker" class="btn btn-primary btn-large reveal">Make A List Online Now</a>
-                <p class="reveal" style="margin-top:1.4em; font-family:var(--font-mono); font-size:.85rem; color:var(--muted);">// no sign-up, no ads, no reason to wait</p>
-            </div>
-        </section>
+      <div class="feature-row is-reverse reveal">
+        <div class="feature-copy">
+          <h3>Save any list as a stylish PDF</h3>
+          <p>When a list is ready to leave the browser, export it. Choose from several PDF templates — a clean minimal layout, a lined notebook page, colorful cards, or a dark mono console theme — and download a file that actually looks designed.</p>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Four stylish templates, one click to switch</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Completed items are marked in the exported PDF</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Print-ready, multi-page support for long lists</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <svg viewBox="0 0 320 220" fill="none">
+            <rect x="60" y="10" width="140" height="190" rx="10" fill="#ffffff" stroke="#e7e4f4" stroke-width="2"/>
+            <rect x="100" y="10" width="140" height="190" rx="10" fill="#17152c" transform="translate(30,10)"/>
+            <rect x="78" y="34" width="90" height="10" rx="5" fill="#f43f5e"/>
+            <rect x="78" y="54" width="70" height="8" rx="4" fill="#e7e4f4"/>
+            <rect x="78" y="72" width="70" height="8" rx="4" fill="#e7e4f4"/>
+            <rect x="78" y="90" width="70" height="8" rx="4" fill="#e7e4f4"/>
+            <rect x="152" y="54" width="94" height="10" rx="5" fill="#fbbf24"/>
+            <rect x="152" y="76" width="70" height="8" rx="4" fill="#3a3564"/>
+            <rect x="152" y="94" width="70" height="8" rx="4" fill="#3a3564"/>
+            <rect x="152" y="112" width="70" height="8" rx="4" fill="#3a3564"/>
+          </svg>
+        </div>
+      </div>
 
-    </main>
+      <div class="feature-row reveal">
+        <div class="feature-copy">
+          <h3>Mobile compatible, sign-up free</h3>
+          <p>This is a list website you can actually use standing in a supermarket aisle. It's mobile compatible from the first tap, loads fast, and never asks for an account before letting you make a list online.</p>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Responsive layout for phones, tablets and desktops</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Large tap targets for checkboxes and buttons</li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Nothing to install, nothing to configure</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <svg viewBox="0 0 320 220" fill="none">
+            <rect x="115" y="10" width="90" height="200" rx="16" fill="#ffffff" stroke="#e7e4f4" stroke-width="2"/>
+            <rect x="129" y="30" width="62" height="10" rx="5" fill="#06b6d4"/>
+            <rect x="129" y="50" width="62" height="8" rx="4" fill="#f1eefc"/>
+            <rect x="129" y="66" width="62" height="8" rx="4" fill="#f1eefc"/>
+            <rect x="129" y="82" width="62" height="8" rx="4" fill="#f1eefc"/>
+            <circle cx="160" cy="180" r="10" fill="#7c3aed"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div id="footer-root" class="hidden-until-ready"></div>
+  <!-- ============================== TEMPLATES / PDF ============================== -->
+  <section class="section" id="templates">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Save as PDF</span>
+        <h2>Stylish templates for every finished list</h2>
+        <p>Making a list online is only half the job — a good list also needs to leave the screen looking good. Pick a template in the list maker above, then save your list as a PDF.</p>
+      </div>
 
-    <!-- Load jsPDF from CDN with async + fallback -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" async id="jspdf-script"></script>
+      <div class="template-grid reveal-stagger">
+        <div class="template-card">
+          <div class="template-preview tpl-minimal">
+            <svg viewBox="0 0 220 140" width="100%" height="100%"><rect width="220" height="140" fill="#ffffff"/><rect x="16" y="16" width="120" height="12" rx="4" fill="#171532"/><rect x="16" y="44" width="180" height="8" rx="4" fill="#e7e4f4"/><rect x="16" y="62" width="180" height="8" rx="4" fill="#e7e4f4"/><rect x="16" y="80" width="140" height="8" rx="4" fill="#e7e4f4"/></svg>
+          </div>
+          <div class="template-meta">
+            <h4>Minimal</h4>
+            <p>Clean black-on-white layout for lists that need to stay strictly readable.</p>
+          </div>
+        </div>
 
-    <!-- Main JS: header, footer, list-maker, main -->
-    <!-- Using defer to avoid blocking render, and loading from correct paths -->
-    <script src="header.js" defer></script>
-    <script src="footer.js" defer></script>
-    <script src="list-maker.js" defer></script>
-    <script src="main.js" defer></script>
+        <div class="template-card">
+          <div class="template-preview tpl-notebook">
+            <svg viewBox="0 0 220 140" width="100%" height="100%"><rect width="220" height="140" fill="#fffceb"/><rect x="16" y="16" width="110" height="12" rx="4" fill="#7a5b06"/><line x1="16" y1="46" x2="204" y2="46" stroke="#fbe0a0" stroke-width="2"/><line x1="16" y1="66" x2="204" y2="66" stroke="#fbe0a0" stroke-width="2"/><line x1="16" y1="86" x2="204" y2="86" stroke="#fbe0a0" stroke-width="2"/><line x1="34" y1="10" x2="34" y2="130" stroke="#f43f5e" stroke-width="2"/></svg>
+          </div>
+          <div class="template-meta">
+            <h4>Notebook</h4>
+            <p>A warm, lined page that feels like a handwritten list — minus the handwriting.</p>
+          </div>
+        </div>
 
-    <!-- Reveal hidden containers after all resources are ready -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.hidden-until-ready').forEach(function(el) {
-                el.classList.add('ready');
-            });
-        });
-    </script>
+        <div class="template-card">
+          <div class="template-preview tpl-cards">
+            <svg viewBox="0 0 220 140" width="100%" height="100%"><rect width="220" height="140" fill="url(#g1)"/><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#f43f5e"/></linearGradient></defs><rect x="16" y="16" width="120" height="12" rx="4" fill="#ffffff"/><rect x="16" y="46" width="188" height="20" rx="6" fill="rgba(255,255,255,0.85)"/><rect x="16" y="72" width="188" height="20" rx="6" fill="rgba(255,255,255,0.7)"/><rect x="16" y="98" width="140" height="20" rx="6" fill="rgba(255,255,255,0.55)"/></svg>
+          </div>
+          <div class="template-meta">
+            <h4>Color Cards</h4>
+            <p>Bold gradient header with card-style rows — the most "developer-y" of the four.</p>
+          </div>
+        </div>
 
+        <div class="template-card">
+          <div class="template-preview tpl-mono">
+            <svg viewBox="0 0 220 140" width="100%" height="100%"><rect width="220" height="140" fill="#17152c"/><rect x="16" y="16" width="120" height="12" rx="4" fill="#06b6d4"/><rect x="16" y="46" width="180" height="8" rx="4" fill="#3a3564"/><rect x="16" y="64" width="180" height="8" rx="4" fill="#3a3564"/><rect x="16" y="82" width="150" height="8" rx="4" fill="#3a3564"/></svg>
+          </div>
+          <div class="template-meta">
+            <h4>Mono Console</h4>
+            <p>A dark, code-editor-inspired PDF for the list maker who never left the terminal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== USE CASES ============================== -->
+  <section class="section section--tinted" id="use-cases">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Made for real days</span>
+        <h2>Whatever the reason, there's a list for it</h2>
+        <p>Making a list online works for more than errands. Here's where people actually reach for a list maker during a normal week.</p>
+      </div>
+
+      <div class="usecase-grid reveal-stagger">
+        <div class="usecase-card" style="--accent:#7c3aed;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Daily to do list</h3>
+          <p>Open the to do list maker each morning, dump every task out of your head, and work down the list all day.</p>
+        </div>
+        <div class="usecase-card" style="--accent:#65c93a;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.3" fill="currentColor"/><circle cx="17" cy="21" r="1.3" fill="currentColor"/></svg>
+          <h3>Weekly grocery run</h3>
+          <p>Use the grocery list maker to plan meals for the week, then check items off as they land in the cart.</p>
+        </div>
+        <div class="usecase-card" style="--accent:#f43f5e;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 7h12l-1 12H7L6 7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="2"/></svg>
+          <h3>Online shopping list</h3>
+          <p>Track wishlist items across stores with an online shopping list maker instead of a dozen open tabs.</p>
+        </div>
+        <div class="usecase-card" style="--accent:#06b6d4;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19l7-14 7 14M7.5 14h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Trip packing</h3>
+          <p>Make a packing checklist before every trip so passports, chargers and shoes always make it into the bag.</p>
+        </div>
+        <div class="usecase-card" style="--accent:#b9790a;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          <h3>Study sessions</h3>
+          <p>Break a syllabus into a checklist of readings and assignments so exam prep stops feeling shapeless.</p>
+        </div>
+        <div class="usecase-card" style="--accent:#2563eb;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Project launches</h3>
+          <p>Create a list online for every launch checklist, hand-off or release so nothing ships half-finished.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== WHY CHOOSE US / STATS ============================== -->
+  <section class="section" id="why">
+    <div class="container why-grid">
+      <div class="reveal">
+        <span class="eyebrow">Why people pick this list maker</span>
+        <h2>A list website built to get out of your way</h2>
+        <p>There are plenty of ways to make a list online. This one is built specifically to be fast to open, easy to type into, and satisfying to finish — whether that's a five-item checklist or a fifty-item grocery list.</p>
+        <ul class="why-list">
+          <li>
+            <span class="why-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <div><strong>Instant, no loading screens</strong><span>The list maker opens directly into the editor — no dashboards to click through first.</span></div>
+          </li>
+          <li>
+            <span class="why-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="2"/><path d="M7 10l2 2 4-4M7 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><strong>Built-in checklist logic</strong><span>Every list — not just checklists — gets tick boxes, strikethroughs and a "clear done" shortcut.</span></div>
+          </li>
+          <li>
+            <span class="why-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><strong>Real PDF export</strong><span>Save any list as a designed PDF instead of a plain text dump.</span></div>
+          </li>
+          <li>
+            <span class="why-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <div><strong>Mobile compatible by default</strong><span>Every layout, button and checkbox is sized to work on a phone screen first.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="stat-panel reveal">
+        <div><strong>9+</strong><span>// built-in list types</span></div>
+        <div><strong>4</strong><span>// pdf templates</span></div>
+        <div><strong>0s</strong><span>// sign-up time</span></div>
+        <div><strong>100%</strong><span>// mobile compatible</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ ============================== -->
+  <section class="section section--tinted" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Questions</span>
+        <h2>Frequently asked questions</h2>
+        <p>Everything people usually ask before they make a list online for the first time.</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Is Make A List Online really free to use?</summary>
+          <p>Yes. Make A List Online is a free list maker. You can create a list online, add and check off items, and save your list as a PDF without creating an account or paying anything.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What kinds of lists can I make with this list maker?</summary>
+          <p>You can make a to do list, grocery list, checklist, online shopping list, travel packing list, study list, wedding planning list, work list, or a fully custom list. The list maker adapts to whatever list you're making.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I save my list as a PDF?</summary>
+          <p>Yes. After making a list online, choose one of the stylish PDF templates — Minimal, Notebook, Color Cards or Mono Console — and click Save as PDF to download a print-ready copy.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to sign up to create a list online?</summary>
+          <p>No sign-up is required. Open the homepage, start typing your list, and export it whenever you're ready.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this online to do list maker mobile friendly?</summary>
+          <p>Yes. The list maker is fully mobile compatible, so you can make a grocery list, checklist or to do list from your phone, tablet or desktop.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FINAL CTA ============================== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Ready to make a list online?</h2>
+        <p>Jump back into the list maker, pick a type, and turn a blank page into a finished, checkable list — then save it as a stylish PDF.</p>
+        <a href="#list-maker" class="btn btn-primary">Open the List Maker</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer-root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/header.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
