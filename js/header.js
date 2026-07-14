@@ -24,15 +24,7 @@
         '<a href="#templates">PDF Templates</a>',
         '<a href="#use-cases">Use Cases</a>',
         '<a href="#faq">FAQ</a>',
-      '</nav>',
-
-      '<div class="header-cta">',
-        '<a href="#list-maker" class="btn btn-outline btn-sm">Sign In</a>',
-        '<a href="#list-maker" class="btn btn-gradient btn-sm">Start a List — Free</a>',
-        '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation menu">',
-          '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#171532" stroke-width="2" stroke-linecap="round"/></svg>',
-        '</button>',
-      '</div>',
+      '</nav>',      
     '</div>'
   ].join("");
 
