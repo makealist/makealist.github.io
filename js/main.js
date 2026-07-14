@@ -2,6 +2,8 @@
    Main — scroll-reveal animations & misc UI behavior
    =================================================== */
 (function () {
+  let observer = null;
+
   function initReveal() {
     const els = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window) || els.length === 0) {
@@ -9,7 +11,12 @@
       return;
     }
 
-    const observer = new IntersectionObserver(
+    // Use a single observer instance
+    if (observer) {
+      observer.disconnect();
+    }
+
+    observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -25,26 +32,39 @@
   }
 
   function initSmoothAnchors() {
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (id.length <= 1) return;
-        const target = document.querySelector(id);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', id);
-        }
-      });
+    // Use event delegation instead of individual listeners
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      
+      const id = a.getAttribute('href');
+      if (id.length <= 1) return;
+      
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', id);
+      }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // header.js / footer.js render on DOMContentLoaded too; run after a tick
-    // so .reveal elements injected by them (if any) are also observed.
-    setTimeout(() => {
+  // Run immediately when DOM is ready, without setTimeout
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
       initReveal();
       initSmoothAnchors();
-    }, 0);
+    });
+  } else {
+    // DOM is already ready
+    initReveal();
+    initSmoothAnchors();
+  }
+
+  // Clean up observer on page unload
+  window.addEventListener('beforeunload', () => {
+    if (observer) {
+      observer.disconnect();
+    }
   });
 })();
