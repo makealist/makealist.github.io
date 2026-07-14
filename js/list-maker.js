@@ -50,6 +50,10 @@
   };
 
   let items = [];
+  let renderTimeout = null;
+  let listEl = null;
+  let countEl = null;
+  let terminalEl = null;
 
   function loadState() {
     try {
@@ -69,7 +73,7 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {
-      /* storage unavailable — fail silently, list still works in-memory */
+      /* storage unavailable — fail silently */
     }
   }
 
@@ -87,35 +91,81 @@
     return div.innerHTML;
   }
 
+  // Optimized render with debouncing and DOM caching
   function render() {
-    const list = document.getElementById('list-items');
-    const terminal = document.querySelector('.terminal');
-    const count = document.getElementById('item-count');
-    if (!list) return;
-
-    list.innerHTML = items
-      .map(
-        (item, i) => `
-        <li data-id="${item.id}">
-          <span class="line-no">${String(i + 1).padStart(2, '0')}</span>
-          <button type="button" class="item-check ${item.done ? 'done' : ''}" aria-label="${item.done ? 'Mark as not done' : 'Mark as done'}" data-action="toggle" data-id="${item.id}">
-            ${item.done ? '&#10003;' : ''}
-          </button>
-          <span class="item-text ${item.done ? 'done' : ''}">${escapeHtml(item.text)}</span>
-          <button type="button" class="item-delete" aria-label="Delete item" data-action="delete" data-id="${item.id}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m-9 0 1 13h10l1-13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </li>`
-      )
-      .join('');
-
-    const doneCount = items.filter((i) => i.done).length;
-    if (count) {
-      count.textContent = `${items.length} item${items.length === 1 ? '' : 's'} • ${doneCount} done`;
+    // Clear any pending render
+    if (renderTimeout) {
+      cancelAnimationFrame(renderTimeout);
     }
-    if (terminal) {
-      terminal.classList.toggle('is-empty', items.length === 0);
-    }
+
+    renderTimeout = requestAnimationFrame(() => {
+      if (!listEl) {
+        listEl = document.getElementById('list-items');
+        if (!listEl) return;
+      }
+      
+      // Use DocumentFragment for batch DOM updates
+      const fragment = document.createDocumentFragment();
+      
+      items.forEach((item, i) => {
+        const li = document.createElement('li');
+        li.dataset.id = item.id;
+        
+        const lineNo = document.createElement('span');
+        lineNo.className = 'line-no';
+        lineNo.textContent = String(i + 1).padStart(2, '0');
+        li.appendChild(lineNo);
+        
+        const checkBtn = document.createElement('button');
+        checkBtn.type = 'button';
+        checkBtn.className = `item-check ${item.done ? 'done' : ''}`;
+        checkBtn.setAttribute('aria-label', item.done ? 'Mark as not done' : 'Mark as done');
+        checkBtn.dataset.action = 'toggle';
+        checkBtn.dataset.id = item.id;
+        if (item.done) {
+          checkBtn.innerHTML = '&#10003;';
+        }
+        li.appendChild(checkBtn);
+        
+        const textSpan = document.createElement('span');
+        textSpan.className = `item-text ${item.done ? 'done' : ''}`;
+        textSpan.textContent = item.text;
+        li.appendChild(textSpan);
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.type = 'button';
+        deleteBtn.className = 'item-delete';
+        deleteBtn.setAttribute('aria-label', 'Delete item');
+        deleteBtn.dataset.action = 'delete';
+        deleteBtn.dataset.id = item.id;
+        deleteBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m-9 0 1 13h10l1-13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        li.appendChild(deleteBtn);
+        
+        fragment.appendChild(li);
+      });
+      
+      // Clear and update in one operation
+      listEl.innerHTML = '';
+      listEl.appendChild(fragment);
+
+      // Update counts
+      if (!countEl) {
+        countEl = document.getElementById('item-count');
+      }
+      if (countEl) {
+        const doneCount = items.filter((i) => i.done).length;
+        countEl.textContent = `${items.length} item${items.length === 1 ? '' : 's'} • ${doneCount} done`;
+      }
+      
+      if (!terminalEl) {
+        terminalEl = document.querySelector('.terminal');
+      }
+      if (terminalEl) {
+        terminalEl.classList.toggle('is-empty', items.length === 0);
+      }
+      
+      renderTimeout = null;
+    });
   }
 
   function addItem(text) {
@@ -248,7 +298,6 @@
   function init() {
     const form = document.getElementById('list-form');
     const input = document.getElementById('list-input');
-    const listEl = document.getElementById('list-items');
     const clearCompletedBtn = document.getElementById('clear-completed');
     const clearAllBtn = document.getElementById('clear-all');
     const downloadBtn = document.getElementById('download-list');
@@ -256,11 +305,17 @@
     const titleInput = document.getElementById('list-title');
     const typeSelect = document.getElementById('list-type');
 
-    if (!form || !input || !listEl) return;
+    if (!form || !input || !document.getElementById('list-items')) return;
+
+    // Cache DOM elements
+    listEl = document.getElementById('list-items');
+    countEl = document.getElementById('item-count');
+    terminalEl = document.querySelector('.terminal');
 
     loadState();
     render();
 
+    // Use event delegation for form
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       addItem(input.value);
@@ -268,6 +323,7 @@
       input.focus();
     });
 
+    // Use event delegation for list items
     listEl.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-action]');
       if (!btn) return;
@@ -304,5 +360,10 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  // Run init immediately if DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
