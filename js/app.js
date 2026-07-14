@@ -64,6 +64,10 @@
     mono: { name: "Mono Console", bg: [23, 21, 44], ink: [255, 255, 255], accent: [6, 182, 212] }
   };
 
+  // PDF library state
+  var pdfLoaded = false;
+  var pdfLoading = false;
+
   function els() {
     return {
       tabs: document.getElementById("editorTabs"),
@@ -168,78 +172,226 @@
     });
   }
 
+  // ============================================================
+  // PDF LIBRARY LOADER - Handles jsPDF loading properly
+  // ============================================================
+  
+  function getJspdfLib() {
+    // Try different possible global names for jsPDF
+    if (window.jspdf && typeof window.jspdf.jsPDF === 'function') {
+      return window.jspdf.jsPDF;
+    }
+    if (window.jspdf && typeof window.jspdf.JsPDF === 'function') {
+      return window.jspdf.JsPDF;
+    }
+    if (typeof window.jsPDF === 'function') {
+      return window.jsPDF;
+    }
+    if (typeof window.JsPDF === 'function') {
+      return window.JsPDF;
+    }
+    return null;
+  }
+
+  function isPdfLoaded() {
+    return getJspdfLib() !== null;
+  }
+
+  function loadPdfLibrary() {
+    return new Promise(function(resolve, reject) {
+      // Check if already loaded
+      if (isPdfLoaded()) {
+        pdfLoaded = true;
+        resolve();
+        return;
+      }
+
+      // Check if jsPDF script tag exists but hasn't loaded yet
+      var existingScript = document.querySelector('script[src*="jspdf"]');
+      if (existingScript) {
+        // Wait for it to load
+        var checkInterval = setInterval(function() {
+          if (isPdfLoaded()) {
+            clearInterval(checkInterval);
+            pdfLoaded = true;
+            resolve();
+          }
+        }, 100);
+        
+        // Timeout after 5 seconds
+        setTimeout(function() {
+          clearInterval(checkInterval);
+          reject(new Error('PDF library load timeout'));
+        }, 5000);
+        return;
+      }
+
+      // If no script exists, create one
+      var script = document.createElement('script');
+      script.src = 'js/jspdf.min.js';
+      script.async = false;
+      
+      script.onload = function() {
+        // Check if it loaded correctly
+        if (isPdfLoaded()) {
+          pdfLoaded = true;
+          resolve();
+        } else {
+          reject(new Error('PDF library loaded but not available globally'));
+        }
+      };
+      
+      script.onerror = function() {
+        reject(new Error('Failed to load PDF library file'));
+      };
+      
+      document.head.appendChild(script);
+    });
+  }
+
+  // ============================================================
+  // PDF EXPORT - With proper loading handling
+  // ============================================================
+
   function exportPdf() {
-    var jspdfNs = window.jspdf;
-    if (!jspdfNs || !jspdfNs.jsPDF) {
-      window.alert("PDF engine is still loading — please try again in a moment.");
+    var pdfBtn = document.getElementById('saveAsPdfBtn');
+    var originalHtml = pdfBtn.innerHTML;
+    
+    // If PDF is already loaded, export immediately
+    if (isPdfLoaded()) {
+      doExportPdf();
       return;
     }
-    var list = STATE.lists[STATE.active];
-    var meta = TEMPLATE_META[STATE.template] || TEMPLATE_META.minimal;
-    var doc = new jspdfNs.jsPDF({ unit: "pt", format: "a4" });
-    var pageW = doc.internal.pageSize.getWidth();
-    var pageH = doc.internal.pageSize.getHeight();
-    var margin = 48;
 
-    doc.setFillColor(meta.bg[0], meta.bg[1], meta.bg[2]);
-    doc.rect(0, 0, pageW, pageH, "F");
+    // Show loading state on button
+    pdfBtn.innerHTML = '⏳ Loading PDF engine...';
+    pdfBtn.disabled = true;
+    pdfBtn.style.opacity = '0.7';
 
-    if (STATE.template === "notebook") {
-      doc.setDrawColor(251, 224, 150);
-      for (var y = 120; y < pageH - 40; y += 26) {
-        doc.line(margin, y, pageW - margin, y);
-      }
-      doc.setDrawColor(244, 63, 94);
-      doc.line(margin + 26, 60, margin + 26, pageH - 40);
-    }
-
-    if (STATE.template === "cards") {
-      doc.setFillColor(meta.accent[0], meta.accent[1], meta.accent[2]);
-      doc.rect(0, 0, pageW, 10, "F");
-    }
-
-    if (STATE.template === "mono") {
-      doc.setFillColor(30, 27, 58);
-      doc.roundedRect(margin - 14, 50, pageW - (margin - 14) * 2, 46, 8, 8, "F");
-    }
-
-    doc.setTextColor(meta.ink[0], meta.ink[1], meta.ink[2]);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22);
-    doc.text(list.title || "My List", margin, 84);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.setTextColor(meta.accent[0], meta.accent[1], meta.accent[2]);
-    doc.text("Made with Make A List Online — makealist.github.io", margin, 102);
-
-    var cursorY = 140;
-    doc.setFontSize(13);
-    list.items.forEach(function (it) {
-      if (cursorY > pageH - 60) {
-        doc.addPage();
-        doc.setFillColor(meta.bg[0], meta.bg[1], meta.bg[2]);
-        doc.rect(0, 0, pageW, pageH, "F");
-        cursorY = 70;
-      }
-      var boxX = margin;
-      doc.setDrawColor(meta.accent[0], meta.accent[1], meta.accent[2]);
-      doc.setLineWidth(1.4);
-      if (it.done && STATE.template === "cards") {
-        doc.setFillColor(meta.accent[0], meta.accent[1], meta.accent[2]);
-        doc.roundedRect(boxX, cursorY - 11, 14, 14, 3, 3, "F");
-      } else {
-        doc.roundedRect(boxX, cursorY - 11, 14, 14, 3, 3, "S");
-      }
-      doc.setTextColor(meta.ink[0], meta.ink[1], meta.ink[2]);
-      var text = it.text + (it.done ? "  (done)" : "");
-      doc.text(text, boxX + 24, cursorY);
-      cursorY += 28;
-    });
-
-    var fname = (list.title || "list").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-    doc.save((fname || "make-a-list") + ".pdf");
+    // Try to load the library
+    loadPdfLibrary()
+      .then(function() {
+        // Restore button
+        pdfBtn.innerHTML = originalHtml;
+        pdfBtn.disabled = false;
+        pdfBtn.style.opacity = '1';
+        // Now export
+        doExportPdf();
+      })
+      .catch(function(err) {
+        console.error('PDF load error:', err);
+        // Restore button
+        pdfBtn.innerHTML = originalHtml;
+        pdfBtn.disabled = false;
+        pdfBtn.style.opacity = '1';
+        
+        // Show user-friendly error
+        var errorMsg = 'Could not load the PDF engine. ';
+        if (err.message === 'Failed to load PDF library file') {
+          errorMsg += 'Please check that js/jspdf.min.js exists and try again.';
+        } else {
+          errorMsg += 'Please refresh the page and try again.';
+        }
+        window.alert(errorMsg);
+      });
   }
+
+  function doExportPdf() {
+    var JsPDFLib = getJspdfLib();
+    
+    if (!JsPDFLib) {
+      window.alert('PDF engine is not available. Please refresh the page and try again.');
+      return;
+    }
+
+    try {
+      var list = STATE.lists[STATE.active];
+      var meta = TEMPLATE_META[STATE.template] || TEMPLATE_META.minimal;
+      var doc = new JsPDFLib({ unit: "pt", format: "a4" });
+      var pageW = doc.internal.pageSize.getWidth();
+      var pageH = doc.internal.pageSize.getHeight();
+      var margin = 48;
+
+      // Set background
+      doc.setFillColor(meta.bg[0], meta.bg[1], meta.bg[2]);
+      doc.rect(0, 0, pageW, pageH, "F");
+
+      // Notebook template special styling
+      if (STATE.template === "notebook") {
+        doc.setDrawColor(251, 224, 150);
+        for (var y = 120; y < pageH - 40; y += 26) {
+          doc.line(margin, y, pageW - margin, y);
+        }
+        doc.setDrawColor(244, 63, 94);
+        doc.line(margin + 26, 60, margin + 26, pageH - 40);
+      }
+
+      // Cards template header
+      if (STATE.template === "cards") {
+        doc.setFillColor(meta.accent[0], meta.accent[1], meta.accent[2]);
+        doc.rect(0, 0, pageW, 10, "F");
+      }
+
+      // Mono template accent
+      if (STATE.template === "mono") {
+        doc.setFillColor(30, 27, 58);
+        doc.roundedRect(margin - 14, 50, pageW - (margin - 14) * 2, 46, 8, 8, "F");
+      }
+
+      // Title
+      doc.setTextColor(meta.ink[0], meta.ink[1], meta.ink[2]);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(22);
+      doc.text(list.title || "My List", margin, 84);
+
+      // Subtitle
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.setTextColor(meta.accent[0], meta.accent[1], meta.accent[2]);
+      doc.text("Made with Make A List Online — makealist.github.io", margin, 102);
+
+      // List items
+      var cursorY = 140;
+      doc.setFontSize(13);
+      
+      list.items.forEach(function (it) {
+        if (cursorY > pageH - 60) {
+          doc.addPage();
+          doc.setFillColor(meta.bg[0], meta.bg[1], meta.bg[2]);
+          doc.rect(0, 0, pageW, pageH, "F");
+          cursorY = 70;
+        }
+        
+        var boxX = margin;
+        doc.setDrawColor(meta.accent[0], meta.accent[1], meta.accent[2]);
+        doc.setLineWidth(1.4);
+        
+        if (it.done && STATE.template === "cards") {
+          doc.setFillColor(meta.accent[0], meta.accent[1], meta.accent[2]);
+          doc.roundedRect(boxX, cursorY - 11, 14, 14, 3, 3, "F");
+        } else {
+          doc.roundedRect(boxX, cursorY - 11, 14, 14, 3, 3, "S");
+        }
+        
+        doc.setTextColor(meta.ink[0], meta.ink[1], meta.ink[2]);
+        var text = it.text + (it.done ? "  ✓" : "");
+        doc.text(text, boxX + 24, cursorY);
+        cursorY += 28;
+      });
+
+      // Save the PDF
+      var fname = (list.title || "list").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      doc.save((fname || "make-a-list") + ".pdf");
+      
+    } catch (err) {
+      console.error('PDF export error:', err);
+      window.alert('An error occurred while generating the PDF. Please try again.');
+    }
+  }
+
+  // ============================================================
+  // INITIALIZATION
+  // ============================================================
 
   function initListMaker() {
     var e = els();
@@ -277,6 +429,12 @@
         }
       });
     });
+
+    // Pre-load PDF library in background
+    loadPdfLibrary().catch(function(err) {
+      // Silent fail - we'll try again when user clicks the button
+      console.log('PDF pre-load in background:', err);
+    });
   }
 
   function initReveal() {
@@ -307,5 +465,3 @@
     init();
   }
 })();
-
-
